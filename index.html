@@ -121,6 +121,7 @@
 
             if (acertosValue > tentativasValue) {
                 acertosErrorElement.textContent = 'O número de acertos não pode ser maior que o número de tentativas!';
+                acertosInput.value = '';
             } else {
                 acertosErrorElement.textContent = '';
             }
@@ -128,8 +129,4 @@
 
         calcularButton.addEventListener('click', (e) => {
             e.preventDefault();
-            const tentativas = parseInt(tentativasInput.value);
-            const acertos = parseInt(acertosInput.value);
-
-            if (acertos > tentativas) 
-               
+            const tentativas = parseInt(tentativasInput.value
