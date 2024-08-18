@@ -13,16 +13,16 @@
         .container {
             max-width: 400px;
             margin: 40px auto;
-            padding: 30px; /* aumentei o padding para 30px */
+            padding: 30px;
             border: 1px solid #ddd;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .label {
             display: block;
-            margin-bottom: 20px; /* aumentei o espaçamento entre as labels */
+            margin-bottom: 20px;
             text-align: left;
-            margin-left: 40px; /* aumentei o espaçamento à esquerda */
+            margin-left: 40px;
         }
         .input {
             padding: 10px;
@@ -85,9 +85,10 @@
         <form>
             <label class="label" for="tentativas">Tentativas:</label>
             <input class="input" type="number" id="tentativas" required>
-            <br><br> <!-- adicionei um espaço entre as labels -->
+            <br><br>
             <label class="label" for="acertos">Acertos:</label>
             <input class="input" type="number" id="acertos" required>
+            <span id="acertos-error" style="color: red;"></span>
             <div class="button-container">
                 <button class="button" id="calcular">Calcular</button>
             </div>
@@ -108,19 +109,27 @@
         });
 
         const calcularButton = document.getElementById('calcular');
+        const acertosInput = document.getElementById('acertos');
+        const tentativasInput = document.getElementById('tentativas');
         const acertosResultadoElement = document.getElementById('acertos-resultado');
         const errosResultadoElement = document.getElementById('erros-resultado');
+        const acertosErrorElement = document.getElementById('acertos-error');
+
+        acertosInput.addEventListener('input', () => {
+            const acertosValue = parseInt(acertosInput.value);
+            const tentativasValue = parseInt(tentativasInput.value);
+
+            if (acertosValue > tentativasValue) {
+                acertosErrorElement.textContent = 'O número de acertos não pode ser maior que o número de tentativas!';
+            } else {
+                acertosErrorElement.textContent = '';
+            }
+        });
 
         calcularButton.addEventListener('click', (e) => {
             e.preventDefault();
-            const tentativas = parseInt(document.getElementById('tentativas').value);
-            const acertos = parseInt(document.getElementById('acertos').value);
-            const erros = tentativas - acertos;
-            const acertosPorcentagem = (acertos / tentativas) * 100;
-            const errosPorcentagem = (erros / tentativas) * 100;
-            acertosResultadoElement.textContent = `Acertos: ${acertosPorcentagem.toFixed(2)}%`;
-            errosResultadoElement.textContent = `Erros: ${errosPorcentagem.toFixed(2)}%`;
-        });
-    </script>
-</body>
-</html
+            const tentativas = parseInt(tentativasInput.value);
+            const acertos = parseInt(acertosInput.value);
+
+            if (acertos > tentativas) {
+               
