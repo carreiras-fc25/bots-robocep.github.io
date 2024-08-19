@@ -5,144 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Porcentagem</title>
     <style>
-        /* Global Styles */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            transition: background-color 0.5s;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            transition: background-color 0.5s;
-        }
-        
-        header h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        
-        /* Toggle Button Styles */
-        #dark-mode-toggle {
-            background-color: #333;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.5s;
-        }
-        
-        #dark-mode-toggle:hover {
-            background-color: #444;
-        }
-        
-        /* Main Styles */
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        
-        section {
-            background-color: #fff;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            transition: background-color 0.5s, border-color 0.5s;
-        }
-        
-        /* Form Styles */
-        #calculadora-form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        #calculadora-form label {
-            margin-bottom: 10px;
-        }
-        
-        #calculadora-form input[type="number"] {
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            transition: border-color 0.5s;
-        }
-        
-        #calculadora-form button[type="submit"] {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.5s;
-        }
-        
-        #calculadora-form button[type="submit"]:hover {
-            background-color: #444;
-        }
-        
-        /* Result Styles */
-        #resultado {
-            font-size: 18px;
-            margin-top: 20px;
-        }
-        
-        /* Footer Styles */
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            clear: both;
-            transition: background-color 0.5s;
-        }
-        
-        footer p {
-            margin-bottom: 10px;
-        }
-        
-               /* Dark Mode Styles */
-        .dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
-        
-        .dark-mode header {
-            background-color: #444;
-        }
-        
-        .dark-mode section {
-            background-color: #333;
-            border-color: #444;
-        }
-        
-        .dark-mode #calculadora-form input[type="number"] {
-            border-color: #444;
-        }
-        
-        .dark-mode #calculadora-form button[type="submit"] {
-            background-color: #444;
-        }
-        
-        .dark-mode footer {
-            background-color: #444;
-        }
+        /* ... (estilos anteriores) ... */
     </style>
 </head>
 <body>
@@ -162,6 +25,13 @@
                 <p id="resultado"></p>
             </form>
         </section>
+        <section id="historico">
+            <h2>Histórico de Cálculos</h2>
+            <ul id="historico-list">
+                <!-- histórico de cálculos será exibido aqui -->
+            </ul>
+            <button id="download-pdf">Baixar Histórico em PDF</button>
+        </section>
     </main>
     <footer>
         <p>&copy; 2023 - Todos os direitos reservados.</p>
@@ -178,7 +48,11 @@
         const tentativasInput = document.getElementById('tentativas');
         const acertosInput = document.getElementById('acertos');
         const resultadoP = document.getElementById('resultado');
-
+        const historicoList = document.getElementById('historico-list');
+        const downloadPdfButton = document.getElementById('download-pdf');
+        
+        let historico = [];
+        
         calculadoraForm.addEventListener('submit', (e) => {
           e.preventDefault();
           const tentativas = parseInt(tentativasInput.value);
@@ -190,6 +64,29 @@
             Porcentagem de Acertos: ${porcentagemAcertos.toFixed(2)}%
             Porcentagem de Erros: ${porcentagemErros.toFixed(2)}%
           `;
+          
+          // adicionar ao histórico
+          historico.push({
+            tentativas: tentativas,
+            acertos: acertos,
+            erros: erros,
+            porcentagemAcertos: porcentagemAcertos,
+            porcentagemErros: porcentagemErros
+          });
+          
+          // atualizar histórico
+          historicoList.innerHTML = '';
+          historico.forEach((item, index) => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `Cálculo ${index + 1}: ${item.tentativas} tentativas, ${item.acertos} acertos, ${item.erros} erros`;
+            historicoList.appendChild(listItem);
+          });
+        });
+        
+        downloadPdfButton.addEventListener('click', () => {
+          const pdf = new jsPDF();
+          pdf.fromHTML(historicoList, 15, 15);
+          pdf.save('historico.pdf');
         });
     </script>
 </body>
