@@ -5,8 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Porcentagem</title>
     <style>
+        /* Estilos modernizados */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+        
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2em;
+        }
+        
+        section {
+            background-color: #fff;
+            padding: 1em;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        h1, h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type="number"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+        
+        #dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        #dark-mode-toggle:hover {
+            background-color: #555;
         }
         
         .dark-mode {
@@ -14,17 +87,9 @@
             color: #fff;
         }
         
-        .dark-mode button {
+        .dark-mode section {
             background-color: #444;
             color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-        
-        .dark-mode button:hover {
-            background-color: #555;
         }
     </style>
 </head>
@@ -50,13 +115,11 @@
             <ul id="historico-list">
                 <!-- histórico de cálculos será exibido aqui -->
             </ul>
-            <button id="download-pdf">Baixar Histórico em PDF</button>
         </section>
     </main>
     <footer>
         <p>&copy; 2023 - Todos os direitos reservados.</p>
     </footer>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.min.js"></script>
     <script>
         const darkModeToggle = document.getElementById('dark-mode-toggle');
         const body = document.body;
@@ -70,7 +133,6 @@
         const acertosInput = document.getElementById('acertos');
         const resultadoP = document.getElementById('resultado');
         const historicoList = document.getElementById('historico-list');
-        const downloadPdfButton = document.getElementById('download-pdf');
         
         let historico = [];
         
@@ -81,7 +143,7 @@
           const erros = tentativas - acertos;
           const porcentagemAcertos = (acertos / tentativas) * 100;
           const porcentagemErros = (erros / tentativas) * 100;
-          resultadoP.textContent = `
+                 resultadoP.textContent = `
             Porcentagem de Acertos: ${porcentagemAcertos.toFixed(2)}%
             Porcentagem de Erros: ${porcentagemErros.toFixed(2)}%
           `;
@@ -102,13 +164,6 @@
             listItem.textContent = `Cálculo ${index + 1}: ${item.tentativas} tentativas, ${item.acertos} acertos, ${item.erros} erros`;
             historicoList.appendChild(listItem);
           });
-        });
-        
-        downloadPdfButton.addEventListener('click', () => {
-          const pdf = new jsPDF();
-          const historicoHtml = historicoList.outerHTML;
-          pdf.fromHTML(historicoHtml, 15, 15);
-          pdf.save('historico.pdf');
         });
     </script>
 </body>
