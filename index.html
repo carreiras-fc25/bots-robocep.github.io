@@ -169,80 +169,133 @@
     <button class="Robocep-button" id="Robocep-button" onclick="window.open('https://robocep.pythonanywhere.com/', '_blank')">
   <i class="fa-solid fa-robot"></i> Robocep
 </button>
-    <div class="container">
-        <form>
-            <label class="label" for="nome">Nome:</label>
-            <input class="input" type="text" id="nome" required>
+     <div class="container">
+        <form id="login-form">
+            <label class="label" for="email">Email:</label>
+            <input class="input" type="email" id="email" required>
             <br><br>
-            <label class="label" for="tentativas">Tentativas:</label>
-            <input class="input" type="number" id="tentativas" required>
+            <label class="label" for="senha">Senha:</label>
+            <input class="input" type="password" id="senha" required>
             <br><br>
-            <label class="label" for="acertos">Acertos:</label>
-            <input class="input" type="number" id="acertos" required>
-            <div class="button-container">
-                <button class="button" id="calcular">Calcular</button>
-            </div>
+            <button class="button" id="login-button">Login</button>
+            <button class="button" id="cadastro-button">Cadastrar</button>
         </form>
-        <div class="result" id="result">
-            <p id="acertos-resultado"><//p>
-            <p id="erros-resultado"></p>
+        <div class="calculadora" id="calculadora" style="display: none;">
+            <form>
+                <label class="label" for="nome">Nome:</label>
+                <input class="input" type="text" id="nome" required>
+                <br><br>
+                <label class="label" for="tentativas">Tentativas:</label>
+                <input class="input" type="number" id="tentativas" required>
+                <br><br>
+                <label class="label" for="acertos">Acertos:</label>
+                <input class="input" type="number" id="acertos" required>
+                <div class="button-container">
+                    <button class="button" id="calcular">Calcular</button>
+                </div>
+            </form>
+            <div class="result" id="result">
+                <p id="acertos-resultado"></p>
+                <p id="erros-resultado"></p>
+            </div>
+            <div class="historico" id="historico">
+                <div id="historico-texto"></div>
+            </div>
         </div>
-        <div class="historico" id="historico">
-            <div id="historico-texto"></div>
-        </div>
+
+        <script>
+            let usuarios = [];
+
+            const loginButton = document.getElementById('login-button');
+            const cadastroButton = document.getElementById('cadastro-button');
+            const calculadoraDiv = document.getElementById('calculadora');
+
+            loginButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const senha = document.getElementById('senha').value;
+                const usuario = usuarios.find((u) => u.email === email && u.senha === senha);
+                if (usuario) {
+                    // login successful, show calculadora
+                    calculadoraDiv.style.display = 'block';
+                    document.getElementById('login-form').style.display = 'none';
+                } else {
+                    alert('Email ou senha incorretos');
+                }
+            });
+
+            cadastroButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const email = document.getElementById('email').value;
+                const senha = document.getElementById('senha').value;
+                if (senha.length < 8) {
+                    alert('Senha deve ter no mínimo 8 caracteres');
+                    return;
+                }
+                const novoUsuario = { email, senha };
+                usuarios.push(novoUsuario);
+                alert('Conta criada com sucesso!');
+                document.getElementById('login-form').reset();
+            });
+
+            const calcularButton = document.getElementById('calcular');
+            const nomeInput = document.getElementById('nome');
+            const tentativasInput = document.getElementById('tentativas');
+            const acertosInput = document.getElementById('acertos');
+            const acertosResultadoElement = document.getElementById('acertos-resultado');
+            const errosResultadoElement = document.getElementById('erros-resultado');
+            const historicoElement = document.getElementById('historico-texto');
+
+            let historico = [];
+
+            calcularButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const nome = nomeInput.value;
+                const tentativas = parseInt(tentativasInput.value);
+                const acertos = parseInt(acertosInput.value);
+                if (acertos > tentativas) {
+                    alert("O número de acertos não pode ser maior que o número de tentativas.");
+                    return;
+                }
+                const erros = tentativas - acertos;
+                const acertosPorcentagem = (acertos / tentativas) * 100;
+                const errosPorcentagem = (erros / tentativas) * 100;
+
+                acertosResultadoElement.textContent = `Acertos: ${acertos} (${acertosPorcentagem.toFixed(2)}%)`;
+                errosResultadoElement.textContent = `Erros: ${erros} (${errosPorcentagem.toFixed(2)}%)`;
+
+                historico.push({
+                    nome,
+                    tentativas,
+                    acertos,
+                    erros,
+                    acertosPorcentagem,
+                    errosPorcentagem
+                });
+
+                historicoElement.innerHTML = '';
+                historico.forEach((item) => {
+                    const paragraph = document.createElement('p');
+                                     paragraph.textContent = `${item.nome} - ${item.acertosPorcentagem.toFixed(2)}% acertos, ${item.errosPorcentagem.toFixed(2)}% erros`;
+                    historicoElement.appendChild(paragraph);
+                });
+            });
+        </script>
     </div>
+</body>
+</html>
 
-    <script>
-        const modeButton = document.getElementById('mode-button');
-        const body = document.body;
+<script>
+    const modeButton = document.getElementById('mode-button');
 
-        modeButton.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            modeButton.textContent = body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Escuro';
-        });
-
-        const calcularButton = document.getElementById('calcular');
-        const nomeInput = document.getElementById('nome');
-        const tentativasInput = document.getElementById('tentativas');
-        const acertosInput = document.getElementById('acertos');
-        const acertosResultadoElement = document.getElementById('acertos-resultado');
-        const errosResultadoElement = document.getElementById('erros-resultado');
-        const historicoElement = document.getElementById('historico-texto');
-
-        let historico = [];
-
-        calcularButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const nome = nomeInput.value;
-            const tentativas = parseInt(tentativasInput.value);
-            const acertos = parseInt(acertosInput.value);
-             if (acertos > tentativas) {
-            alert("O número de acertos não pode ser maior que o número de tentativas.");
-            return;
-             }
-            const erros = tentativas - acertos;
-            const acertosPorcentagem = (acertos / tentativas) * 100;
-            const errosPorcentagem = (erros / tentativas) * 100;
-
-            acertosResultadoElement.textContent = `Acertos: ${acertos} (${acertosPorcentagem.toFixed(2)}%)`;
-            errosResultadoElement.textContent = `Erros: ${erros} (${errosPorcentagem.toFixed(2)}%)`;
-
-             historico.push({
-                nome,
-                tentativas,
-                acertos,
-                erros,
-                acertosPorcentagem,
-                errosPorcentagem
-            });
-
-            historicoElement.innerHTML = '';
-            historico.forEach((item) => {
-                const paragraph = document.createElement('p');
-                paragraph.textContent = `${item.nome} - ${item.acertosPorcentagem.toFixed(2)}% acertos, ${item.errosPorcentagem.toFixed(2)}% erros`;
-                historicoElement.appendChild(paragraph);
-            });
-        });
-    </script>
+    modeButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+            modeButton.textContent = 'Modo Claro';
+        } else {
+            modeButton.textContent = 'Modo Escuro';
+        }
+    });
+</script>
 </body>
 </html>
