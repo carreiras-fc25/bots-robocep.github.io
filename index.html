@@ -4,7 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Chances</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        form {
+            margin: 20px auto;
+            width: 50%;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+        }
+        
+        button[type="button"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button[type="button"]:hover {
+            background-color: #3e8e41;
+        }
+        
+        #resultado {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <h1>Calculadora de Chances</h1>
@@ -20,6 +65,17 @@
         <p id="resultado"></p>
     </form>
 
-    <script src="script.js"></script>
+    <script>
+        function calcularChances() {
+            const eventoA = document.getElementById("eventoA").value;
+            const eventoB = document.getElementById("eventoB").value;
+
+            // Cálculo da chance de A ocorrer dado que B ocorreu
+            const chanceA = eventoA / (eventoA + eventoB);
+
+            // Exibir o resultado
+            document.getElementById("resultado").innerHTML = `A chance de A ocorrer é de ${chanceA.toFixed(2)}%`;
+        }
+    </script>
 </body>
 </html>
