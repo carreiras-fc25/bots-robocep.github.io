@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bots Robocep</title>
+    <title>Calculadora de Porcentagem</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            transition: background-color 0.5s;
         }
         
         header {
@@ -16,6 +17,7 @@
             color: #fff;
             padding: 10px;
             text-align: center;
+            transition: background-color 0.5s;
         }
         
         main {
@@ -31,6 +33,7 @@
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
+            transition: background-color 0.5s, border-color 0.5s;
         }
         
         #calculadora input[type="number"] {
@@ -38,6 +41,7 @@
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 10px;
+            transition: border-color 0.5s;
         }
         
         #calculadora button[type="submit"] {
@@ -47,6 +51,7 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
+            transition: background-color 0.5s;
         }
         
         #calculadora button[type="submit"]:hover {
@@ -59,16 +64,45 @@
             padding: 10px;
             text-align: center;
             clear: both;
+            transition: background-color 0.5s;
         }
         
         footer p {
             margin-bottom: 10px;
+        }
+        
+        /* Modo Escuro */
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        .dark-mode header {
+            background-color: #444;
+        }
+        
+        .dark-mode section {
+            background-color: #333;
+            border-color: #444;
+        }
+        
+        .dark-mode #calculadora input[type="number"] {
+            border-color: #444;
+        }
+        
+        .dark-mode #calculadora button[type="submit"] {
+            background-color: #444;
+        }
+        
+        .dark-mode footer {
+            background-color: #444;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Calculadora de Porcentagem</h1>
+        <button id="dark-mode-toggle">Modo Escuro</button>
     </header>
     <main>
         <section id="calculadora">
@@ -84,9 +118,16 @@
         </section>
     </main>
     <footer>
-        <p>&copy; 2024 Bots Robocep- Todos os direitos reservados.</p>
+        <p>&copy; 2023 - Todos os direitos reservados.</p>
     </footer>
     <script>
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+        
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+        });
+        
         const calculadoraForm = document.getElementById('calculadora-form');
         const tentativasInput = document.getElementById('tentativas');
         const acertosInput = document.getElementById('acertos');
