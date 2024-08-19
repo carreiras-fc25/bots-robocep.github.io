@@ -212,7 +212,7 @@
             historicoElement.innerHTML = '';
             historico.forEach((item) => {
                 const paragraph = document.createElement('p');
-                paragraph.textContent = `${item.nome} - ${item.acertos} acertos em ${item.tentativas} tentativas`;
+                paragraph.textContent = `${item.nome} - acertos, erros`;
                 historicoElement.appendChild(paragraph);
             });
         });
