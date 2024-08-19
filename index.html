@@ -49,26 +49,60 @@
             font-weight: bold;
             margin-top: 20px;
         }
+        
+        #historico {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        #historico ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #historico li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+        
+        #historico li:last-child {
+            border-bottom: none;
+        }
     </style>
 </head>
 <body>
     <h1>Calculadora de Porcentagem</h1>
     <form>
         <label for="tentativas">Tentativas:</label>
-        <input type="number" id="tentativas" value="">
+        <input type="number" id="tentativas" value="10">
 
         <label for="acertos">Acertos:</label>
-        <input type="number" id="acertos" value="">
+        <input type="number" id="acertos" value="8">
+
+        <label for="topico">Tópico:</label>
+        <input type="text" id="topico" value="Matemática">
 
         <button type="button" onclick="calcularPorcentagem()">Calcular Porcentagem</button>
 
         <p id="resultado"></p>
+
+        <div id="historico">
+            <h2>Histórico</h2>
+            <ul id="historico-lista"></ul>
+        </div>
     </form>
 
     <script>
+        let historico = [];
+
         function calcularPorcentagem() {
             const tentativas = document.getElementById("tentativas").value;
             const acertos = document.getElementById("acertos").value;
+            const topico = document.getElementById("topico").value;
 
             // Cálculo da porcentagem de acertos
             const porcentagemAcertos = (acertos / tentativas) * 100;
@@ -78,8 +112,27 @@
             const porcentagemErros = (erros / tentativas) * 100;
 
             // Exibir o resultado
-            document.getElementById("resultado").innerHTML = `Você acertou ${porcentagemAcertos.toFixed(2)}% das tentativas e errou ${porcentagemErros.toFixed(2)}%`;
-        }
-    </script>
+            document.getElementById("resultado").innerHTML = `Você acertou ${porcentagemAcertos.toFixed(2)}% das tentativas e errou ${porcentagemErros.toFixed(2)}% no tópico de ${topico}`;
+
+            // Adicionar ao histórico
+            historico.push({
+                topico: topico,
+                acertos: acertos,
+                erros: erros,
+                porcentagemAcertos: porcentagemAcertos.toFixed(2),
+                porcentagemErros: porcentagemErros.toFixed(2)
+            });
+
+            // Exibir o histórico
+            const historicoLista = document.getElementById("historico-lista");
+         historicoLista.innerHTML = "";
+     historico.forEach((item, index) => {
+         const listaItem = document.createElement("li");
+           listaItem.innerHTML = `Tópico: ${item.topico} - Acertos: ${item.acertos} - Erros: ${item.erros} - Porcentagem Acertos: ${item.porcentagemAcertos}% - Porcentagem Erros: ${item.porcentagemErros}%`;
+          historicoLista.appendChild(listaItem);
+       });
+   } 
+}
+</script>
 </body>
 </html>
