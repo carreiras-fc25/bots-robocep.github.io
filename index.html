@@ -111,22 +111,4 @@
         const calcularButton = document.getElementById('calcular');
         const acertosInput = document.getElementById('acertos');
         const tentativasInput = document.getElementById('tentativas');
-        const acertosResultadoElement = document.getElementById('acertos-resultado');
-        const errosResultadoElement = document.getElementById('erros-resultado');
-        const acertosErrorElement = document.getElementById('acertos-error');
-
-        acertosInput.addEventListener('input', () => {
-            const acertosValue = parseInt(acertosInput.value);
-            const tentativasValue = parseInt(tentativasInput.value);
-
-            if (acertosValue > tentativasValue) {
-                acertosErrorElement.textContent = 'O número de acertos não pode ser maior que o número de tentativas!';
-                acertosInput.value = '';
-            } else {
-                acertosErrorElement.textContent = '';
-            }
-        });
-
-        calcularButton.addEventListener('click', (e) => {
-            e.preventDefault();
-            const tentativas = parseInt(tentativasInput.value    }}}}
+        const acertosResultado
