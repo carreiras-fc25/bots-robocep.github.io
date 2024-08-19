@@ -202,11 +202,13 @@
             acertosResultadoElement.textContent = `Acertos: ${acertos} (${acertosPorcentagem.toFixed(2)}%)`;
             errosResultadoElement.textContent = `Erros: ${erros} (${errosPorcentagem.toFixed(2)}%)`;
 
-            historico.push({
+             historico.push({
                 nome,
                 tentativas,
                 acertos,
-                erros
+                erros,
+                acertosPorcentagem,
+                errosPorcentagem
             });
 
             historicoElement.innerHTML = '';
