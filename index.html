@@ -5,7 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Acertos</title>
     <style>
-        /* ... */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #555;
+        }
+        .calculator {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        .dark-mode .header {
+            background-color: #444;
+        }
+        .dark-mode .button {
+            background-color: #555;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -21,8 +61,20 @@
     </button>
     <button class="upload-button" id="upload-button">Upload de Arquivo</button>
     <button class="download-button" id="download-button">Download de Arquivo</button>
-    <div class="container">
-        <!-- ... -->
+    <div class="calculator">
+        <h2>Calculadora de Acertos</h2>
+        <form>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome"><br><br>
+            <label for="tentativas">Tentativas:</label>
+            <input type="number" id="tentativas" name="tentativas"><br><br>
+            <label for="acertos">Acertos:</label>
+            <input type="number" id="acertos" name="acertos"><br><br>
+            <button id="calcular">Calcular</button>
+        </form>
+        <div id="acertos-resultado"></div>
+        <div id="erros-resultado"></div>
+        <div id="historico-texto"></div>
     </div>
 
     <script>
@@ -45,7 +97,7 @@
                 const arquivo = arquivoInput.files[0];
                 const formData = new FormData();
                 formData.append('arquivo', arquivo);
-                fetch('upload.php', {
+                fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
                     method: 'POST',
                     body: formData
                 })
@@ -57,7 +109,7 @@
         });
 
         downloadButton.addEventListener('click', () => {
-            fetch('upload.php', {
+            fetch('<?php echo $_SERVER['PHP_SELF']; ?>', {
                 method: 'GET'
             })
             .then(response => response.blob())
