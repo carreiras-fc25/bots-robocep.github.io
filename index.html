@@ -4,7 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Porcentagem e Chat GPT</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        
+        #calculadora input[type="number"] {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        
+        #calculadora button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        #calculadora button[type="submit"]:hover {
+            background-color: #444;
+        }
+        
+        #chat-input {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        
+        #chat-send {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        
+        #chat-send:hover {
+            background-color: #444;
+        }
+        
+        #chat-log {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            clear: both;
+        }
+        
+        footer p {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -32,6 +119,39 @@
     <footer>
         <p>&copy; 2023 - Todos os direitos reservados.</p>
     </footer>
-    <script src="script.js"></script>
+    <script>
+        // Calculadora de Porcentagem
+        const calculadoraForm = document.getElementById('calculadora-form');
+        const tentativasInput = document.getElementById('tentativas');
+        const acertosInput = document.getElementById('acertos');
+        const resultadoP = document.getElementById('resultado');
+
+        calculadoraForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const tentativas = parseInt(tentativasInput.value);
+          const acertos = parseInt(acertosInput.value);
+          const porcentagem = (acertos / tentativas) * 100;
+          resultadoP.textContent = `Porcentagem: ${porcentagem.toFixed(2)}%`;
+        });
+
+        // Chat GPT
+        const chatInput = document.getElementById('chat-input');
+        const chatSendButton = document.getElementById('chat-send');
+        const chatLog = document.getElementById('chat-log');
+
+        chatSendButton.addEventListener('click', () => {
+          const userInput = chatInput.value.trim();
+                 if (userInput !== '') {
+            // Simulando uma resposta do GPT-3
+            const gptResponse = `Você disse: ${userInput}. Isso é muito interessante!`;
+            const chatLogHTML = `
+              <p>Você: ${userInput}</p>
+              <p>GPT-3: ${gptResponse}</p>
+            `;
+            chatLog.innerHTML += chatLogHTML;
+            chatInput.value = '';
+          }
+        });
+    </script>
 </body>
 </html>
