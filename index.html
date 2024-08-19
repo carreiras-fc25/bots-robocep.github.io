@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Chances</title>
+    <title>Calculadora de Porcentagem</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -52,29 +52,29 @@
     </style>
 </head>
 <body>
-    <h1>Calculadora de Chances</h1>
+    <h1>Calculadora de Porcentagem</h1>
     <form>
-        <label for="eventoA">Evento A:</label>
-        <input type="number" id="eventoA" value="0.5">
+        <label for="tentativas">Tentativas:</label>
+        <input type="number" id="tentativas" value="10">
 
-        <label for="eventoB">Evento B:</label>
-        <input type="number" id="eventoB" value="0.3">
+        <label for="acertos">Acertos:</label>
+        <input type="number" id="acertos" value="8">
 
-        <button type="button" onclick="calcularChances()">Calcular Chances</button>
+        <button type="button" onclick="calcularPorcentagem()">Calcular Porcentagem</button>
 
         <p id="resultado"></p>
     </form>
 
     <script>
-        function calcularChances() {
-            const eventoA = document.getElementById("eventoA").value;
-            const eventoB = document.getElementById("eventoB").value;
+        function calcularPorcentagem() {
+            const tentativas = document.getElementById("tentativas").value;
+            const acertos = document.getElementById("acertos").value;
 
-            // Cálculo da chance de A ocorrer dado que B ocorreu
-            const chanceA = eventoA / (eventoA + eventoB);
+            // Cálculo da porcentagem de acertos
+            const porcentagem = (acertos / tentativas) * 100;
 
             // Exibir o resultado
-            document.getElementById("resultado").innerHTML = `A chance de A ocorrer é de ${chanceA.toFixed(2)}%`;
+            document.getElementById("resultado").innerHTML = `Você acertou ${porcentagem.toFixed(2)}% das tentativas`;
         }
     </script>
 </body>
