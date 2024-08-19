@@ -3,156 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bots Robocep</title>
-    <style>
-        /* styles remain the same */
-    </style>
+    <title>Calculadora de Chances</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Bots Robocep</h1>
-    </div>
-    <button class="mode-button" id="mode-button">Modo Claro</button>
-    <button class="instagram-button" id="instagram-button" onclick="window.open('https://www.instagram.com/bots_robocep/', '_blank')">
-      <i class="fa-brands fa-instagram"></i> Instagram
-    </button>
-    <button class="Robocep-button" id="Robocep-button" onclick="window.open('https://robocep.pythonanywhere.com/', '_blank')">
-      <i class="fa-solid fa-robot"></i> Robocep
-    </button>
-    <button class="historico-button" id="historico-button" onclick="generatePdf()">Baixar Histórico em PDF</button>
-    <div class="container">
-        <form id="cadastro-form">
-            <label class="label" for="nome">Nome</label>
-            <input type="text" id="nome" class="input">
-            <label class="label" for="email">Email</label>
-            <input type="email" id="email-cadastro" class="input">
-            <label class="label" for="senha">Senha</label>
-            <input type="password" id="senha-cadastro" class="input">
-            <button class="button" id="cadastro-button">Cadastrar</button>
-        </form>
-        <form id="login-form">
-            <label class="label" for="email">Email</label>
-            <input type="email" id="email-login" class="input">
-            <label class="label" for="senha">Senha</label>
-            <input type="password" id="senha-login" class="input">
-            <button class="button" id="login-button">Entrar</button>
-        </form>
-        <div class="result">
-            <p id="result-text"></p>
-        </div>
-        <div class="historico">
-            <p id="historico-text"></p>
-        </div>
-        <div class="calculadora" style="display: none;">
-            <h2>Calculadora de Chances</h2>
-            <form id="calculadora-form">
-                <label class="label" for="tentativas">Tentativas:</label>
-                <input type="number" id="tentativas" class="input">
-                <label class="label" for="acertos">Acertos:</label>
-                <input type="number" id="acertos" class="input">
-                <button class="button" id="calcular-chances">Calcular Chances</button>
-                <p id="chances-text"></p>
-            </form>
-        </div>
+    <h1>Calculadora de Chances</h1>
+    <form>
+        <label for="eventoA">Evento A:</label>
+        <input type="number" id="eventoA" value="0.5">
 
-        <script>
-            const modeButton = document.getElementById('mode-button');
-            const instagramButton = document.getElementById('instagram-button');
-            const RobocepButton = document.getElementById('Robocep-button');
-            const historicoButton = document.getElementById('historico-button');
-            const cadastroForm = document.getElementById('cadastro-form');
-            const cadastroButton = document.getElementById('cadastro-button');
-            const loginForm = document.getElementById('login-form');
-            const loginButton = document.getElementById('login-button');
-            const emailCadastroInput = document.getElementById('email-cadastro');
-            const senhaCadastroInput = document.getElementById('senha-cadastro');
-            const emailLoginInput = document.getElementById('email-login');
-            const senhaLoginInput = document.getElementById('senha-login');
-            const resultText = document.getElementById('result-text');
-            const historicoText = document.getElementById('historico-text');
-            const calculadora = document.getElementById('calculadora');
-            const calcularChancesButton = document.getElementById('calcular-chances');
-            const chancesText = document.getElementById('chances-text');
+        <label for="eventoB">Evento B:</label>
+        <input type="number" id="eventoB" value="0.3">
 
-            modeButton.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                if (document.body.classList.contains('dark-mode')) {
-                    modeButton.textContent = 'Modo Escuro';
-                } else {
-                    modeButton.textContent = 'Modo Claro';
-                }
-            });
+        <button type="button" onclick="calcularChances()">Calcular Chances</button>
 
-            cadastroButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                const nome = document.getElementById('nome').value;
-                const email = emailCadastroInput.value;
-                const senha = senhaCadastroInput.value;
+        <p id="resultado"></p>
+    </form>
 
-                // Enviar os dados para o servidor
-                fetch('/cadastro', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ nome, email, senha })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Cadastro realizado com sucesso!');
-                        calculadora.style.display = 'block';
-                    } else {
-                        alert('Erro ao cadastrar: ' + data.error);
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao cadastrar:', error);
-                });
-            });
-
-            loginButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                const email = emailLoginInput.value;
-                const senha = senhaLoginInput.value;
-
-                // Fazer login aqui
-                fetch('/login', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ email, senha })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        resultText.textContent = `Bem-vindo, ${email}!`;
-                    } else {
-                        resultText.textContent = `Erro ao logar: ${data.error}`;
-                    }
-                })
-                .catch(error => {
-                    console.error('Erro ao logar:', error);
-                });
-            });
-
-            calcularChancesButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                const tentativas = document.getElementById('tentativas').value;
-                const acertos = document.getElementById('acertos').value;
-
-                // Calcular as chances aqui
-                const chances = (acertos / tentativas) * 100;
-                chancesText.textContent = `Suas chances são de ${chances}%`;
-            });
-
-            function generatePdf() {
-                const historicoHtml = historicoText.innerHTML;
-                const pdf = new jsPDF();
-                pdf.fromHTML(historicoHtml, 15, 15);
-                pdf.save('historico.pdf');
-            }
-        </script>
-    </body>
+    <script src="script.js"></script>
+</body>
 </html>
