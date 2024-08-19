@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +40,7 @@
   .Robocep-button {
             position: absolute;
             top: 80px;
-            right: 300px;
+            right: 350px;
             background-color: #444;
             color: #fff;
             border: none;
@@ -167,7 +167,8 @@
       <i class="fa-brands fa-instagram"></i> Instagram
     </button>
     <button class="Robocep-button" id="Robocep-button" onclick="window.open('https://robocep.pythonanywhere.com/', '_blank')">
-      <i class="fa-solid fa-robot"></i> Robocep </button>
+      <i class="fa-solid fa-robot"></i> Robocep
+    </button>
     <div class="container">
         <form>
             <label class="label" for="nome">Nome:</label>
@@ -198,8 +199,13 @@
         modeButton.addEventListener('click', () => {
             body.classList.toggle('dark-mode');
             modeButton.textContent = body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Escuro';
-        });
-
+});
+        const arquivoInput = document.getElementById('arquivo');
+arquivoInput.addEventListener('change', (e) => {
+    const arquivo = arquivoInput.files[0];
+    // Lidar com o arquivo selecionado aqui
+    console.log(arquivo);
+});
         const calcularButton = document.getElementById('calcular');
         const nomeInput = document.getElementById('nome');
         const tentativasInput = document.getElementById('tentativas');
