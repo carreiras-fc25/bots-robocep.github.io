@@ -3,136 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Porcentagem</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        
-        form {
-            margin: 20px auto;
-            width: 50%;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-        }
-        
-        button[type="button"] {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        button[type="button"]:hover {
-            background-color: #3e8e41;
-        }
-        
-        #resultado {
-            font-size: 24px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        
-        #historico {
-            margin-top: 20px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        #historico ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        #historico li {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
-        
-        #historico li:last-child {
-            border-bottom: none;
-        }
-    </style>
+    <title>Equipe de Robótica | Inovação e Tecnologia</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Calculadora de Porcentagem</h1>
-    <form>
-        <label for="tentativas">Tentativas:</label>
-        <input type="number" id="tentativas" value="10">
-
-        <label for="acertos">Acertos:</label>
-        <input type="number" id="acertos" value="8">
-
-        <label for="topico">Tópico:</label>
-        <input type="text" id="topico" value="Matemática">
-
-        <button type="button" onclick="calcularPorcentagem()">Calcular Porcentagem</button>
-
-        <p id="resultado"></p>
-
-        <div id="historico">
-            <h2>Histórico</h2>
-            <ul id="historico-lista"></ul>
-        </div>
-    </form>
-
-    <script>
-        let historico = [];
-
-        function calcularPorcentagem() {
-            const tentativas = document.getElementById("tentativas").value;
-            const acertos = document.getElementById("acertos").value;
-            const topico = document.getElementById("topico").value;
-
-            // Cálculo da porcentagem de acertos
-            const porcentagemAcertos = (acertos / tentativas) * 100;
-
-            // Cálculo da porcentagem de erros
-            const erros = tentativas - acertos;
-            const porcentagemErros = (erros / tentativas) * 100;
-
-            // Exibir o resultado
-            document.getElementById("resultado").innerHTML = `Você acertou ${porcentagemAcertos.toFixed(2)}% das tentativas e errou ${porcentagemErros.toFixed(2)}% no tópico de ${topico}`;
-
-            // Adicionar ao histórico
-            historico.push({
-                topico: topico,
-                acertos: acertos,
-                erros: erros,
-                porcentagemAcertos: porcentagemAcertos.toFixed(2),
-                porcentagemErros: porcentagemErros.toFixed(2)
-            });
-
-            // Exibir o histórico
-            const historicoLista = document.getElementById("historico-lista");
-            historicoLista.innerHTML = "";
-            historico.forEach((item, index) => {
-                const listaItem = document.createElement("li");
-    listaItem.innerHTML = `Tópico: ${item.topico} - Acertos: ${item.acertos} - Erros: ${item.erros} - Porcentagem Acertos: ${item.porcentagemAcertos}% - Porcentagem Erros: ${item.porcentagemErros}%`;
-       historicoLista.appendChild(listaItem);
-       });
-     }
-}
-</script>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#projetos">Projetos</a></li>
+                <li><a href="#equipe">Equipe</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="sobre">
+            <h1>Sobre Nós</h1>
+            <p>A nossa equipe de robótica é composta por profissionais apaixonados por inovação e tecnologia. Nossa missão é desenvolver soluções robóticas que melhorem a vida das pessoas.</p>
+            <img src="images/team.jpg" alt="Equipe de robótica">
+        </section>
+        <section id="projetos">
+            <h1>Projetos</h1>
+            <ul>
+                <li>
+                    <h2>Projeto 1: Robô de Serviço</h2>
+                    <p>Desenvolvemos um robô de serviço que pode realizar tarefas domésticas, como cozinhar e limpar.</p>
+                    <img src="images/project1.jpg" alt="Projeto 1">
+                </li>
+                <li>
+                    <h2>Projeto 2: Robô de Inspeção</h2>
+                    <p>Criamos um robô de inspeção que pode detectar problemas em infraestruturas, como pontes e edifícios.</p>
+                    <img src="images/project2.jpg" alt="Projeto 2">
+                </li>
+            </ul>
+        </section>
+        <section id="equipe">
+            <h1>Equipe</h1>
+            <ul>
+                <li>
+                    <h2>João Silva</h2>
+                    <p>Engenheiro de robótica com 5 anos de experiência.</p>
+                    <img src="images/joao.jpg" alt="João Silva">
+                </li>
+                <li>
+                    <h2>Maria Rodrigues</h2>
+                    <p>Desenvolvedora de software com 3 anos de experiência.</p>
+                    <img src="images/maria.jpg" alt="Maria Rodrigues">
+                </li>
+            </ul>
+        </section>
+        <section id="contato">
+            <h1>Contato</h1>
+            <p>Fale conosco através do formulário abaixo ou envie um e-mail para <a href="mailto:contato@equiperobotica.com">contato@equiperobotica.com</a>.</p>
+            <form>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome"><br><br>
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email"><br><br>
+                <label for="mensagem">Mensagem:</label>
+                <textarea id="mensagem" name="mensagem"></textarea><br><br>
+                <input type="submit" value="Enviar">
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Equipe de Robótica. Todos os direitos reservados.</p>
+    </footer>
+    <script src="script.js"></script>
 </body>
- </html>
+</html>
