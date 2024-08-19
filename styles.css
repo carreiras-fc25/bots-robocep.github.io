@@ -49,13 +49,8 @@ section {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+h1, h2 {
     font-size: 24px;
-    margin-bottom: 10px;
-}
-
-h2 {
-    font-size: 18px;
     margin-bottom: 10px;
 }
 
@@ -63,71 +58,25 @@ p {
     margin-bottom: 20px;
 }
 
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 10px;
-}
-
-img {
-    width: 100%;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-#sobre img {
-    width: 50%;
-    height: 200px;
-    margin: 20px auto;
-}
-
-#projetos ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#projetos li {
-    width: 30%;
-    margin: 20px;
-}
-
-#equipe ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-#equipe li {
-    width: 30%;
-    margin: 20px;
-}
-
-#contato form {
+#calculadora form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
 }
 
-#contato label {
+#calculadora label {
     margin-bottom: 10px;
 }
 
-#contato input, #contato textarea {
+#calculadora input[type="number"] {
     padding: 10px;
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 10px;
 }
 
-#contato input[type="submit"] {
+#calculadora button[type="submit"] {
     background-color: #333;
     color: #fff;
     padding: 10px 20px;
@@ -136,8 +85,48 @@ img {
     cursor: pointer;
 }
 
-#contato input[type="submit"]:hover {
+#calculadora button[type="submit"]:hover {
     background-color: #444;
+}
+
+#chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+#chat-input {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+#chat-send {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#chat-send:hover {
+    background-color: #444;
+}
+
+#chat-log {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+#instagram img {
+    width: 50px;
+    height: 50px;
+    margin: 20px;
 }
 
 footer {
@@ -150,33 +139,4 @@ footer {
 
 footer p {
     margin-bottom: 10px;
-}
-
-/* Media Queries */
-
-@media (max-width: 768px) {
-    #projetos ul {
-        flex-direction: column;
-    }
-    #projetos li {
-        width: 100%;
-        margin: 20px 0;
-    }
-    #equipe ul {
-        flex-direction: column;
-    }
-    #equipe li {
-        width: 100%;
-        margin: 20px 0;
-    }
-}
-
-@media (max-width: 480px) {
-    header nav {
-        flex-direction: column;
-    }
-    header nav li {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
 }
