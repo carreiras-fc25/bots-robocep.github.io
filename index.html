@@ -43,14 +43,16 @@
         <div class="historico">
             <p id="historico-text"></p>
         </div>
-        <div class="calculadora">
+        <div class="calculadora" style="display: none;">
             <h2>Calculadora de Chances</h2>
-            <label for="tentativas">Tentativas:</label>
-            <input type="number" id="tentativas" value="0">
-            <label for="acertos">Acertos:</label>
-            <input type="number" id="acertos" value="0">
-            <button id="calcular-chances">Calcular Chances</button>
-            <p id="chances-text"></p>
+            <form id="calculadora-form">
+                <label class="label" for="tentativas">Tentativas:</label>
+                <input type="number" id="tentativas" class="input">
+                <label class="label" for="acertos">Acertos:</label>
+                <input type="number" id="acertos" class="input">
+                <button class="button" id="calcular-chances">Calcular Chances</button>
+                <p id="chances-text"></p>
+            </form>
         </div>
 
         <script>
@@ -69,8 +71,7 @@
             const resultText = document.getElementById('result-text');
             const historicoText = document.getElementById('historico-text');
             const calculadora = document.getElementById('calculadora');
-            const tentativasInput = document.getElementById('tentativas');
-            const acertosInput = document.getElementById('acertos');
+            const calcularChancesButton = document.getElementById('calcular-chances');
             const chancesText = document.getElementById('chances-text');
 
             modeButton.addEventListener('click', () => {
@@ -82,7 +83,7 @@
                 }
             });
 
-                      cadastroButton.addEventListener('click', (e) => {
+            cadastroButton.addEventListener('click', (e) => {
                 e.preventDefault();
                 const nome = document.getElementById('nome').value;
                 const email = emailCadastroInput.value;
@@ -100,6 +101,7 @@
                 .then(data => {
                     if (data.success) {
                         alert('Cadastro realizado com sucesso!');
+                        calculadora.style.display = 'block';
                     } else {
                         alert('Erro ao cadastrar: ' + data.error);
                     }
@@ -126,7 +128,6 @@
                 .then(data => {
                     if (data.success) {
                         resultText.textContent = `Bem-vindo, ${email}!`;
-                        calculadora.style.display = 'block'; // Mostrar a calculadora de chances
                     } else {
                         resultText.textContent = `Erro ao logar: ${data.error}`;
                     }
@@ -136,12 +137,14 @@
                 });
             });
 
-            const calcularChancesButton = document.getElementById('calcular-chances');
-            calcularChancesButton.addEventListener('click', () => {
-                const tentativas = parseInt(tentativasInput.value);
-                const acertos = parseInt(acertosInput.value);
+            calcularChancesButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                const tentativas = document.getElementById('tentativas').value;
+                const acertos = document.getElementById('acertos').value;
+
+                // Calcular as chances aqui
                 const chances = (acertos / tentativas) * 100;
-                chancesText.textContent = `Você tem ${chances.toFixed(2)}% de chances de acerto!`;
+                chancesText.textContent = `Suas chances são de ${chances}%`;
             });
 
             function generatePdf() {
