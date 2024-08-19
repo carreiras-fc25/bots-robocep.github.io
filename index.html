@@ -62,9 +62,10 @@
             const acertos = parseInt(acertosInput.value);
             const erros = tentativas - acertos;
             const acertosPorcentagem = (acertos / tentativas) * 100;
+            const errosPorcentagem = (erros / tentativas) * 100;
 
             acertosResultadoElement.textContent = `Acertos: ${acertos} (${acertosPorcentagem.toFixed(2)}%)`;
-            errosResultadoElement.textContent = `Erros: ${erros}`;
+            errosResultadoElement.textContent = `Erros: ${erros} (${errosPorcentagem.toFixed(2)}%)`;
 
             historico.push({
                 nome,
