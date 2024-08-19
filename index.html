@@ -191,10 +191,10 @@
         let historico = [];
 
         calcularButton.addEventListener('click', (e) => {
+            e.preventDefault();
               if (acertos > tentativas) {
             alert("O número de acertos não pode ser maior que o número de tentativas.");
             return;
-            e.preventDefault();
             const nome = nomeInput.value;
             const tentativas = parseInt(tentativasInput.value);
             const acertos = parseInt(acertosInput.value);
