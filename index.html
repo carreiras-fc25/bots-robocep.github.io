@@ -5,7 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Porcentagem</title>
     <style>
-        /* ... (estilos anteriores) ... */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        .dark-mode button {
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .dark-mode button:hover {
+            background-color: #555;
+        }
     </style>
 </head>
 <body>
@@ -86,7 +106,8 @@
         
         downloadPdfButton.addEventListener('click', () => {
           const pdf = new jsPDF();
-          pdf.fromHTML(historicoList, 15, 15);
+          const historicoHtml = historicoList.outerHTML;
+          pdf.fromHTML(historicoHtml, 15, 15);
           pdf.save('historico.pdf');
         });
     </script>
