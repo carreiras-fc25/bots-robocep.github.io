@@ -100,7 +100,7 @@
             <p id="erros-resultado"></p>
         </div>
         <div class="result" id="historico">
-            <p></p>
+            <p id="historico-texto"></p>
         </div>
     </div>
 
@@ -119,7 +119,7 @@
         const acertosInput = document.getElementById('acertos');
         const acertosResultadoElement = document.getElementById('acertos-resultado');
         const errosResultadoElement = document.getElementById('erros-resultado');
-        const historicoElement = document.getElementById('historico');
+        const historicoElement = document.getElementById('historico-texto');
 
         calcularButton.addEventListener('click', (e) => {
             e.preventDefault();
@@ -127,5 +127,4 @@
             const tentativas = parseInt(tentativasInput.value);
             const acertos = parseInt(acertosInput.value);
             const erros = tentativas - acertos;
-            const acertosPorcentagem = (acertos / tentativas) * 100;
-            const
+            const acertosPorcentagem = (ac
