@@ -1,74 +1,60 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipe de Robótica | Inovação e Tecnologia</title>
+    <title>Hacks da Olimpíada Brasileira de Robótica</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav>
             <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#calculadora">Calculadora de Porcentagem</a></li>
+                <li><a href="#chatgpt">Chat GPT</a></li>
+                <li><a href="#instagram">Instagram</a></li>
                 <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#equipe">Equipe</a></li>
-                <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
     </header>
     <main>
-        <section id="sobre">
-            <h1>Sobre Nós</h1>
-            <p>A nossa equipe de robótica é composta por profissionais apaixonados por inovação e tecnologia. Nossa missão é desenvolver soluções robóticas que melhorem a vida das pessoas.</p>
-            <img src="images/team.jpg" alt="Equipe de robótica">
+        <section id="home">
+            <h1>Bem-vindo à Hacks da Olimpíada Brasileira de Robótica!</h1>
+            <p>Aqui você encontrará recursos e ferramentas para ajudá-lo a melhorar suas habilidades em robótica.</p>
         </section>
-        <section id="projetos">
-            <h1>Projetos</h1>
-            <ul>
-                <li>
-                    <h2>Projeto 1: Robô de Serviço</h2>
-                    <p>Desenvolvemos um robô de serviço que pode realizar tarefas domésticas, como cozinhar e limpar.</p>
-                    <img src="images/project1.jpg" alt="Projeto 1">
-                </li>
-                <li>
-                    <h2>Projeto 2: Robô de Inspeção</h2>
-                    <p>Criamos um robô de inspeção que pode detectar problemas em infraestruturas, como pontes e edifícios.</p>
-                    <img src="images/project2.jpg" alt="Projeto 2">
-                </li>
-            </ul>
-        </section>
-        <section id="equipe">
-            <h1>Equipe</h1>
-            <ul>
-                <li>
-                    <h2>João Silva</h2>
-                    <p>Engenheiro de robótica com 5 anos de experiência.</p>
-                    <img src="images/joao.jpg" alt="João Silva">
-                </li>
-                <li>
-                    <h2>Maria Rodrigues</h2>
-                    <p>Desenvolvedora de software com 3 anos de experiência.</p>
-                    <img src="images/maria.jpg" alt="Maria Rodrigues">
-                </li>
-            </ul>
-        </section>
-        <section id="contato">
-            <h1>Contato</h1>
-            <p>Fale conosco através do formulário abaixo ou envie um e-mail para <a href="mailto:contato@equiperobotica.com">contato@equiperobotica.com</a>.</p>
+        <section id="calculadora">
+            <h2>Calculadora de Porcentagem</h2>
             <form>
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome"><br><br>
-                <label for="email">E-mail:</label>
-                <input type="email" id="email" name="email"><br><br>
-                <label for="mensagem">Mensagem:</label>
-                <textarea id="mensagem" name="mensagem"></textarea><br><br>
-                <input type="submit" value="Enviar">
+                <label for="tentativas">Tentativas:</label>
+                <input type="number" id="tentativas" name="tentativas"><br><br>
+                <label for="acertos">Acertos:</label>
+                <input type="number" id="acertos" name="acertos"><br><br>
+                <button type="submit">Calcular Porcentagem</button>
             </form>
+            <p id="resultado"></p>
+        </section>
+        <section id="chatgpt">
+            <h2>Chat GPT</h2>
+            <div id="chat-container">
+                <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
+                <button id="chat-send">Enviar</button>
+                <div id="chat-log"></div>
+            </div>
+        </section>
+        <section id="instagram">
+            <h2>Instagram</h2>
+            <a href="https://www.instagram.com/olimpiadabrasileiraderobotica/" target="_blank">
+                <img src="instagram-logo.png" alt="Instagram Logo">
+            </a>
+        </section>
+        <section id="sobre">
+            <h2>Sobre</h2>
+            <p>A Olimpíada Brasileira de Robótica é um evento anual que reúne estudantes e profissionais de robótica para competir e aprender.</p>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Equipe de Robótica. Todos os direitos reservados.</p>
+        <p>&copy; 2023 Hacks da Olimpíada Brasileira de Robótica</p>
     </footer>
     <script src="script.js"></script>
 </body>
