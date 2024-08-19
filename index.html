@@ -1,60 +1,36 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hacks da Olimpíada Brasileira de Robótica</title>
+    <title>Calculadora de Porcentagem e Chat GPT</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#calculadora">Calculadora de Porcentagem</a></li>
-                <li><a href="#chatgpt">Chat GPT</a></li>
-                <li><a href="#instagram">Instagram</a></li>
-                <li><a href="#sobre">Sobre</a></li>
-            </ul>
-        </nav>
+        <h1>Calculadora de Porcentagem e Chat GPT</h1>
     </header>
     <main>
-        <section id="home">
-            <h1>Bem-vindo à Hacks da Olimpíada Brasileira de Robótica!</h1>
-            <p>Aqui você encontrará recursos e ferramentas para ajudá-lo a melhorar suas habilidades em robótica.</p>
-        </section>
         <section id="calculadora">
             <h2>Calculadora de Porcentagem</h2>
-            <form>
+            <form id="calculadora-form">
                 <label for="tentativas">Tentativas:</label>
-                <input type="number" id="tentativas" name="tentativas"><br><br>
+                <input type="number" id="tentativas" required>
                 <label for="acertos">Acertos:</label>
-                <input type="number" id="acertos" name="acertos"><br><br>
-                <button type="submit">Calcular Porcentagem</button>
+                <input type="number" id="acertos" required>
+                <button type="submit">Calcular</button>
+                <p id="resultado"></p>
             </form>
-            <p id="resultado"></p>
         </section>
-        <section id="chatgpt">
+        <section id="chat">
             <h2>Chat GPT</h2>
-            <div id="chat-container">
-                <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
-                <button id="chat-send">Enviar</button>
-                <div id="chat-log"></div>
-            </div>
-        </section>
-        <section id="instagram">
-            <h2>Instagram</h2>
-            <a href="https://www.instagram.com/olimpiadabrasileiraderobotica/" target="_blank">
-                <img src="instagram-logo.png" alt="Instagram Logo">
-            </a>
-        </section>
-        <section id="sobre">
-            <h2>Sobre</h2>
-            <p>A Olimpíada Brasileira de Robótica é um evento anual que reúne estudantes e profissionais de robótica para competir e aprender.</p>
+            <input type="text" id="chat-input" placeholder="Digite sua mensagem...">
+            <button id="chat-send">Enviar</button>
+            <div id="chat-log"></div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2023 Hacks da Olimpíada Brasileira de Robótica</p>
+        <p>&copy; 2023 - Todos os direitos reservados.</p>
     </footer>
     <script src="script.js"></script>
 </body>
