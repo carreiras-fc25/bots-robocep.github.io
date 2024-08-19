@@ -5,7 +5,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Acertos</title>
     <style>
-        /* ... */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            transition: background-color 0.5s;
+        }
+        .container {
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px; 
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .label {
+            display: block;
+            margin-bottom: 20px; 
+            text-align: left;
+            margin-left: 40px; 
+        }
+        .input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #3e8e41;
+        }
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+        .dark-mode .container {
+            border-color: #666;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        .dark-mode .button {
+            background-color: #666;
+            color: #fff;
+        }
+        .dark-mode .label {
+            color: #fff;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .mode-button {
+            margin-left: 20px;
+        }
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -28,7 +96,11 @@
             </div>
         </form>
         <div class="result" id="result">
-            <p id="historico"></p>
+            <p id="acertos-resultado"></p>
+            <p id="erros-resultado"></p>
+        </div>
+        <div class="result" id="historico">
+            <p></p>
         </div>
     </div>
 
@@ -45,6 +117,8 @@
         const nomeInput = document.getElementById('nome');
         const tentativasInput = document.getElementById('tentativas');
         const acertosInput = document.getElementById('acertos');
+        const acertosResultadoElement = document.getElementById('acertos-resultado');
+        const errosResultadoElement = document.getElementById('erros-resultado');
         const historicoElement = document.getElementById('historico');
 
         calcularButton.addEventListener('click', (e) => {
@@ -54,13 +128,4 @@
             const acertos = parseInt(acertosInput.value);
             const erros = tentativas - acertos;
             const acertosPorcentagem = (acertos / tentativas) * 100;
-            const errosPorcentagem = (erros / tentativas) * 100;
-
-            const resultado = `
-                <p>${nome}: Acertos: ${acertosPorcentagem.toFixed(2)}%, Erros: ${errosPorcentagem.toFixed(2)}%</p>
-            `;
-            historicoElement.innerHTML += resultado;
-        });
-    </script>
-</body>
-</html>
+            const
