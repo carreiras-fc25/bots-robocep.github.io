@@ -125,14 +125,14 @@
 
             // Exibir o histórico
             const historicoLista = document.getElementById("historico-lista");
-         historicoLista.innerHTML = "";
-     historico.forEach((item, index) => {
-         const listaItem = document.createElement("li");
-           listaItem.innerHTML = `Tópico: ${item.topico} - Acertos: ${item.acertos} - Erros: ${item.erros} - Porcentagem Acertos: ${item.porcentagemAcertos}% - Porcentagem Erros: ${item.porcentagemErros}%`;
-          historicoLista.appendChild(listaItem);
-       });
-   } 
-}
-</script>
-</body>
-</html>
+            historicoLista.innerHTML = "";
+            historico.forEach((item, index) => {
+                const listaItem = document.createElement("li");
+               130             listaItem.innerHTML = `Tópico: ${item.topico} - Acertos: ${item.acertos} - Erros: ${item.erros} - Porcentagem Acertos: ${item.porcentagemAcertos}% - Porcentagem Erros: ${item.porcentagemErros}%`;
+131             historicoLista.appendChild(listaItem);
+132         });
+133     }
+134 }
+135 </script>
+136 </body>
+137 </html>
