@@ -152,9 +152,29 @@
             color: #fff;
         }
 
-        .dark-mode .result {
+              .dark-mode .result {
             background-color: #333;
             color: #fff;
+        }
+
+        .historico-button {
+            position: absolute;
+            top: 80px;
+            right: 410px;
+            background-color: #444;
+            color: #fff;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .historico-button:hover {
+            background-color: #555;
+        }
+
+        .historico-button i {
+            margin-right: 0.5rem;
         }
     </style>
 </head>
@@ -169,133 +189,57 @@
     <button class="Robocep-button" id="Robocep-button" onclick="window.open('https://robocep.pythonanywhere.com/', '_blank')">
   <i class="fa-solid fa-robot"></i> Robocep
 </button>
-     <div class="container">
+    <button class="historico-button" id="historico-button" onclick="generatePdf()">Baixar Histórico em PDF</button>
+    <div class="container">
         <form id="login-form">
-            <label class="label" for="email">Email:</label>
-            <input class="input" type="email" id="email" required>
-            <br><br>
-            <label class="label" for="senha">Senha:</label>
-            <input class="input" type="password" id="senha" required>
-            <br><br>
-            <button class="button" id="login-button">Login</button>
-            <button class="button" id="cadastro-button">Cadastrar</button>
+            <label class="label" for="email">Email</label>
+            <input type="email" id="email" class="input">
+            <label class="label" for="senha">Senha</label>
+            <input type="password" id="senha" class="input">
+            <button class="button" id="login-button">Entrar</button>
         </form>
-        <div class="calculadora" id="calculadora" style="display: none;">
-            <form>
-                <label class="label" for="nome">Nome:</label>
-                <input class="input" type="text" id="nome" required>
-                <br><br>
-                <label class="label" for="tentativas">Tentativas:</label>
-                <input class="input" type="number" id="tentativas" required>
-                <br><br>
-                <label class="label" for="acertos">Acertos:</label>
-                <input class="input" type="number" id="acertos" required>
-                <div class="button-container">
-                    <button class="button" id="calcular">Calcular</button>
-                </div>
-            </form>
-            <div class="result" id="result">
-                <p id="acertos-resultado"></p>
-                <p id="erros-resultado"></p>
-            </div>
-            <div class="historico" id="historico">
-                <div id="historico-texto"></div>
-            </div>
+        <div class="result">
+            <p id="result-text"></p>
+        </div>
+        <div class="historico">
+            <p id="historico-text"></p>
         </div>
 
         <script>
-            let usuarios = [];
-
+            const modeButton = document.getElementById('mode-button');
+            const instagramButton = document.getElementById('instagram-button');
+            const RobocepButton = document.getElementById('Robocep-button');
+            const historicoButton = document.getElementById('historico-button');
+            const loginForm = document.getElementById('login-form');
+            const emailInput = document.getElementById('email');
+            const senhaInput = document.getElementById('senha');
             const loginButton = document.getElementById('login-button');
-            const cadastroButton = document.getElementById('cadastro-button');
-            const calculadoraDiv = document.getElementById('calculadora');
+            const resultText = document.getElementById('result-text');
+            const historicoText = document.getElementById('historico-text');
+
+            modeButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                if (document.body.classList.contains('dark-mode')) {
+                    modeButton.textContent = 'Modo Escuro';
+                } else {
+                    modeButton.textContent = 'Modo Claro';
+                }
+            });
 
             loginButton.addEventListener('click', (e) => {
                 e.preventDefault();
-                const email = document.getElementById('email').value;
-                const senha = document.getElementById('senha').value;
-                const usuario = usuarios.find((u) => u.email === email && u.senha === senha);
-                if (usuario) {
-                    // login successful, show calculadora
-                    calculadoraDiv.style.display = 'block';
-                    document.getElementById('login-form').style.display = 'none';
-                } else {
-                    alert('Email ou senha incorretos');
-                }
+                const email = emailInput.value;
+                const senha = senhaInput.value;
+                // fazer login aqui
+                resultText.textContent = `Bem-vindo, ${email}!`;
             });
 
-            cadastroButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                const email = document.getElementById('email').value;
-                const senha = document.getElementById('senha').value;
-                if (senha.length < 8) {
-                    alert('Senha deve ter no mínimo 8 caracteres');
-                    return;
-                }
-                const novoUsuario = { email, senha };
-                usuarios.push(novoUsuario);
-                alert('Conta criada com sucesso!');
-                document.getElementById('login-form').reset();
-            });
-
-            const calcularButton = document.getElementById('calcular');
-            const nomeInput = document.getElementById('nome');
-            const tentativasInput = document.getElementById('tentativas');
-            const acertosInput = document.getElementById('acertos');
-            const acertosResultadoElement = document.getElementById('acertos-resultado');
-            const errosResultadoElement = document.getElementById('erros-resultado');
-            const historicoElement = document.getElementById('historico-texto');
-
-            let historico = [];
-
-            calcularButton.addEventListener('click', (e) => {
-                e.preventDefault();
-                const nome = nomeInput.value;
-                const tentativas = parseInt(tentativasInput.value);
-                const acertos = parseInt(acertosInput.value);
-                if (acertos > tentativas) {
-                    alert("O número de acertos não pode ser maior que o número de tentativas.");
-                    return;
-                }
-                const erros = tentativas - acertos;
-                const acertosPorcentagem = (acertos / tentativas) * 100;
-                const errosPorcentagem = (erros / tentativas) * 100;
-
-                acertosResultadoElement.textContent = `Acertos: ${acertos} (${acertosPorcentagem.toFixed(2)}%)`;
-                errosResultadoElement.textContent = `Erros: ${erros} (${errosPorcentagem.toFixed(2)}%)`;
-
-                historico.push({
-                    nome,
-                    tentativas,
-                    acertos,
-                    erros,
-                    acertosPorcentagem,
-                    errosPorcentagem
-                });
-
-                historicoElement.innerHTML = '';
-                historico.forEach((item) => {
-                    const paragraph = document.createElement('p');
-                                     paragraph.textContent = `${item.nome} - ${item.acertosPorcentagem.toFixed(2)}% acertos, ${item.errosPorcentagem.toFixed(2)}% erros`;
-                    historicoElement.appendChild(paragraph);
-                });
-            });
+            function generatePdf() {
+                const historicoHtml = historicoText.innerHTML;
+                const pdf = new jsPDF();
+                pdf.fromHTML(historicoHtml, 15, 15);
+                pdf.save('historico.pdf');
+            }
         </script>
-    </div>
-</body>
-</html>
-
-<script>
-    const modeButton = document.getElementById('mode-button');
-
-    modeButton.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        if (document.body.classList.contains('dark-mode')) {
-            modeButton.textContent = 'Modo Claro';
-        } else {
-            modeButton.textContent = 'Modo Escuro';
-        }
-    });
-</script>
-</body>
+    </body>
 </html>
