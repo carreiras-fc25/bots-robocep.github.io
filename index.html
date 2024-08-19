@@ -5,6 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Acertos</title>
     <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #333;
+            --background-color: #fff;
+            --text-color: #333;
+        }
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -14,7 +20,7 @@
             max-width: 400px;
             margin: 40px auto;
             padding: 30px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--secondary-color);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
@@ -26,12 +32,12 @@
         }
         .input {
             padding: 10px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--secondary-color);
             border-radius: 5px;
             width: 100%;
         }
         .button {
-            background-color: #4CAF50;
+            background-color: var(--primary-color);
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -39,7 +45,7 @@
             cursor: pointer;
         }
         .button:hover {
-            background-color: #3e8e41;
+            background-color: var(--primary-color);
         }
         .result {
             font-size: 24px;
@@ -47,15 +53,15 @@
             margin-top: 20px;
         }
         .dark-mode {
-            background-color: #333;
+            background-color: var(--secondary-color);
             color: #fff;
         }
         .dark-mode .container {
-            border-color: #666;
+            border-color: var(--secondary-color);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
         .dark-mode .button {
-            background-color: #666;
+            background-color: var(--secondary-color);
             color: #fff;
         }
         .dark-mode .label {
@@ -82,33 +88,4 @@
         <button class="mode-button" id="mode-button">Modo Claro</button>
     </div>
     <div class="container">
-        <form>
-            <label class="label" for="tentativas">Tentativas:</label>
-            <input class="input" type="number" id="tentativas" required>
-            <br><br>
-            <label class="label" for="acertos">Acertos:</label>
-            <input class="input" type="number" id="acertos" required>
-            <span id="acertos-error" style="color: red;"></span>
-            <div class="button-container">
-                <button class="button" id="calcular">Calcular</button>
-            </div>
-        </form>
-        <div class="result" id="result">
-            <p id="acertos-resultado"></p>
-            <p id="erros-resultado"></p>
-        </div>
-    </div>
-
-    <script>
-        const modeButton = document.getElementById('mode-button');
-        const body = document.body;
-
-        modeButton.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            modeButton.textContent = body.classList.contains('dark-mode') ? 'Modo Claro' : 'Modo Escuro';
-        });
-
-        const calcularButton = document.getElementById('calcular');
-        const acertosInput = document.getElementById('acertos');
-        const tentativasInput = document.getElementById('tentativas');
-        const acertosResultado
+        <form
