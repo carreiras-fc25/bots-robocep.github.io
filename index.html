@@ -55,10 +55,10 @@
     <h1>Calculadora de Porcentagem</h1>
     <form>
         <label for="tentativas">Tentativas:</label>
-        <input type="number" id="tentativas" value="">
+        <input type="number" id="tentativas" value="10">
 
         <label for="acertos">Acertos:</label>
-        <input type="number" id="acertos" value="">
+        <input type="number" id="acertos" value="8">
 
         <button type="button" onclick="calcularPorcentagem()">Calcular Porcentagem</button>
 
@@ -71,10 +71,14 @@
             const acertos = document.getElementById("acertos").value;
 
             // Cálculo da porcentagem de acertos
-            const porcentagem = (acertos / tentativas) * 100;
+            const porcentagemAcertos = (acertos / tentativas) * 100;
+
+            // Cálculo da porcentagem de erros
+            const erros = tentativas - acertos;
+            const porcentagemErros = (erros / tentativas) * 100;
 
             // Exibir o resultado
-            document.getElementById("resultado").innerHTML = `Você acertou ${porcentagem.toFixed(2)}% das tentativas`;
+            document.getElementById("resultado").innerHTML = `Você acertou ${porcentagemAcertos.toFixed(2)}% das tentativas e errou ${porcentagemErros.toFixed(2)}%`;
         }
     </script>
 </body>
