@@ -74,6 +74,18 @@
         #historico-lista li:last-child, #arquivos-lista li:last-child {
             border-bottom: none;
         }
+
+        /* Adicionado estilo para o histórico em modo ecuro */
+        #historico-lista {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #historico-lista li {
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -126,7 +138,7 @@
                 case '+':
                     resultado = num1 + num2;
                     break;
-                case '-':
+                         case '-':
                     resultado = num1 - num2;
                     break;
                 case '*':
@@ -145,7 +157,7 @@
 
             resultadoP.textContent = `Resultado: ${resultado}`;
 
-                       // Adicione o resultado ao histórico
+            // Adicione o resultado ao histórico
             const historicoListItem = document.createElement('li');
             historicoListItem.textContent = `${num1} ${operacao} ${num2} = ${resultado}`;
             historicoLista.appendChild(historicoListItem);
