@@ -3,168 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Porcentagem</title>
-    <style>
-        /* Estilos modernizados */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 1em;
-            text-align: center;
-        }
-        
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 2em;
-        }
-        
-        section {
-            background-color: #fff;
-            padding: 1em;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        
-        h1, h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 10px;
-        }
-        
-        input[type="number"] {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            width: 100%;
-        }
-        
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        button[type="submit"]:hover {
-            background-color: #3e8e41;
-        }
-        
-        #dark-mode-toggle {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        
-        #dark-mode-toggle:hover {
-            background-color: #555;
-        }
-        
-        .dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
-        
-        .dark-mode section {
-            background-color: #444;
-            color: #fff;
-        }
-    </style>
+    <title>Equipe de Robótica</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>Calculadora de Porcentagem</h1>
-        <button id="dark-mode-toggle">Modo Escuro</button>
+        <h1>Equipe de Robótica</h1>
     </header>
     <main>
         <section id="calculadora">
-            <h2>Calculadora de Porcentagem</h2>
-            <form id="calculadora-form">
-                <label for="tentativas">Tentativas:</label>
-                <input type="number" id="tentativas" required>
-                <label for="acertos">Acertos:</label>
-                <input type="number" id="acertos" required>
-                <button type="submit">Calcular</button>
-                <p id="resultado"></p>
-            </form>
+            <h2>Calculadora</h2>
+            <input type="number" id="num1" placeholder="Número 1">
+            <input type="number" id="num2" placeholder="Número 2">
+            <select id="operacao">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="*">*</option>
+                <option value="/">/</option>
+            </select>
+            <button id="calcular">Calcular</button>
+            <p id="resultado"></p>
         </section>
         <section id="historico">
-            <h2>Histórico de Cálculos</h2>
-            <ul id="historico-list">
-                <!-- histórico de cálculos será exibido aqui -->
-            </ul>
+            <h2>Histórico</h2>
+            <ul id="historico-lista"></ul>
+        </section>
+        <section id="armazenamento">
+            <h2>Armazenamento de Arquivos</h2>
+            <input type="file" id="arquivo">
+            <button id="upload">Upload</button>
+            <ul id="arquivos-lista"></ul>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2024 - Bots Robocep.</p>
-    </footer>
-    <script>
-        const darkModeToggle = document.getElementById('dark-mode-toggle');
-        const body = document.body;
-        
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-        });
-        
-        const calculadoraForm = document.getElementById('calculadora-form');
-        const tentativasInput = document.getElementById('tentativas');
-        const acertosInput = document.getElementById('acertos');
-        const resultadoP = document.getElementById('resultado');
-        const historicoList = document.getElementById('historico-list');
-        
-        let historico = [];
-        
-        calculadoraForm.addEventListener('submit', (e) => {
-          e.preventDefault();
-          const tentativas = parseInt(tentativasInput.value);
-          const acertos = parseInt(acertosInput.value);
-          const erros = tentativas - acertos;
-          const porcentagemAcertos = (acertos / tentativas) * 100;
-          const porcentagemErros = (erros / tentativas) * 100;
-                 resultadoP.textContent = `
-            Porcentagem de Acertos: ${porcentagemAcertos.toFixed(2)}%
-            Porcentagem de Erros: ${porcentagemErros.toFixed(2)}%
-          `;
-          
-          // adicionar ao histórico
-          historico.push({
-            tentativas: tentativas,
-            acertos: acertos,
-            erros: erros,
-            porcentagemAcertos: porcentagemAcertos,
-            porcentagemErros: porcentagemErros
-          });
-          
-          // atualizar histórico
-          historicoList.innerHTML = '';
-          historico.forEach((item, index) => {
-            const listItem = document.createElement('li');
-            listItem.textContent = `Cálculo ${index + 1}: ${item.tentativas} tentativas, ${item.acertos} acertos, ${item.erros} erros`;
-            historicoList.appendChild(listItem);
-          });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
