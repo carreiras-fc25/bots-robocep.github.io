@@ -53,18 +53,18 @@
             background-color: #3e8e41;
         }
 
-        #historico-lista, #arquivos-lista {
+        #historico-lista {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        #historico-lista li, #arquivos-lista li {
+        #historico-lista li {
             padding: 10px;
             border-bottom: 1px solid #ccc;
         }
 
-        #historico-lista li:last-child, #arquivos-lista li:last-child {
+        #historico-lista li:last-child {
             border-bottom: none;
         }
     </style>
@@ -83,6 +83,7 @@
                 <option value="-">-</option>
                 <option value="*">*</option>
                 <option value="/">/</option>
+                <option value="%">%</option>
             </select>
             <button id="calcular">Calcular</button>
             <p id="resultado"></p>
@@ -90,12 +91,6 @@
         <section id="historico">
             <h2>Histórico</h2>
             <ul id="historico-lista"></ul>
-        </section>
-        <section id="armazenamento">
-            <h2>Armazenamento de Arquivos</h2>
-            <input type="file" id="arquivo">
-            <button id="upload">Upload</button>
-            <ul id="arquivos-lista"></ul>
         </section>
     </main>
     <script>
@@ -105,6 +100,7 @@
         const operacaoSelect = document.getElementById('operacao');
         const calcularButton = document.getElementById('calcular');
         const resultadoP = document.getElementById('resultado');
+        const historicoLista = document.getElementById('historico-lista');
 
         calcularButton.addEventListener('click', () => {
             const num1 = parseFloat(num1Input.value);
@@ -129,39 +125,23 @@
                         resultado = 'Erro: Divisão por zero!';
                     }
                     break;
+                case '%':
+                    if (num2 !== 0) {
+                        resultado = (num1 / num2) * 100;
+                    } else {
+                        resultado = 'Erro: Divisão por zero!';
+                    }
+                    break;
                 default:
                     resultado = 'Erro!';
             }
 
             resultadoP.textContent = `Resultado: ${resultado}`;
-        });
 
-        // Histórico
-        const historicoLista = document.getElementById('historico-lista');
-
-        // Armazenamento de Arquivos
-        const arquivoInput = document.getElementById('arquivo');
-        const uploadButton = document.getElementById('upload');
-        const arquivosLista = document.getElementById('arquivos-lista');
-
-        uploadButton.addEventListener('click', () => {
-            const arquivo = arquivoInput.files[0];
-            const formData = new FormData();
-            formData.append('arquivo', arquivo);
-
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                // Adicione o arquivo à lista de arquivos
-                const arquivoListItem = document.createElement('li');
-                arquivoListItem.textContent = arquivo.name;
-                arquivosLista.appendChild(arquivoListItem);
-            })
-            .catch((error) => console.error(error));
+            // Adicione o resultado ao histórico
+            const historicoListItem = document.createElement('li');
+            historicoListItem.textContent = `${num1} ${operacao} ${num2} = ${resultado}`;
+            historicoLista.appendChild(historicoListItem);
         });
     </script>
 </body>
