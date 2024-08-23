@@ -4,7 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Equipe de Robótica</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        section {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 30%;
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        #historico-lista, #arquivos-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #historico-lista li, #arquivos-lista li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        #historico-lista li:last-child, #arquivos-lista li:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -35,6 +98,71 @@
             <ul id="arquivos-lista"></ul>
         </section>
     </main>
-    <script src="script.js"></script>
+    <script>
+        // Calculadora
+        const num1Input = document.getElementById('num1');
+        const num2Input = document.getElementById('num2');
+        const operacaoSelect = document.getElementById('operacao');
+        const calcularButton = document.getElementById('calcular');
+        const resultadoP = document.getElementById('resultado');
+
+        calcularButton.addEventListener('click', () => {
+            const num1 = parseFloat(num1Input.value);
+            const num2 = parseFloat(num2Input.value);
+            const operacao = operacaoSelect.value;
+
+            let resultado;
+            switch (operacao) {
+                case '+':
+                    resultado = num1 + num2;
+                    break;
+                case '-':
+                    resultado = num1 - num2;
+                    break;
+                case '*':
+                    resultado = num1 * num2;
+                    break;
+                case '/':
+                    if (num2 !== 0) {
+                        resultado = num1 / num2;
+                    } else {
+                        resultado = 'Erro: Divisão por zero!';
+                    }
+                    break;
+                default:
+                    resultado = 'Erro!';
+            }
+
+            resultadoP.textContent = `Resultado: ${resultado}`;
+        });
+
+        // Histórico
+        const historicoLista = document.getElementById('historico-lista');
+
+        // Armazenamento de Arquivos
+        const arquivoInput = document.getElementById('arquivo');
+        const uploadButton = document.getElementById('upload');
+        const arquivosLista = document.getElementById('arquivos-lista');
+
+        uploadButton.addEventListener('click', () => {
+            const arquivo = arquivoInput.files[0];
+            const formData = new FormData();
+            formData.append('arquivo', arquivo);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+                // Adicione o arquivo à lista de arquivos
+                const arquivoListItem = document.createElement('li');
+                arquivoListItem.textContent = arquivo.name;
+                arquivosLista.appendChild(arquivoListItem);
+            })
+            .catch((error) => console.error(error));
+        });
+    </script>
 </body>
 </html>
