@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipe de Robótica</title>
+    <title>Calculadora de Acertos e Tentativas</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,12 +34,6 @@
             margin-bottom: 10px;
         }
 
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
         button {
             background-color: #4CAF50;
             color: #fff;
@@ -52,96 +46,41 @@
         button:hover {
             background-color: #3e8e41;
         }
-
-        #historico-lista {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        #historico-lista li {
-            padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        #historico-lista li:last-child {
-            border-bottom: none;
-        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Equipe de Robótica</h1>
+        <h1>Calculadora de Acertos e Tentativas</h1>
     </header>
     <main>
         <section id="calculadora">
             <h2>Calculadora</h2>
-            <input type="number" id="num1" placeholder="Número 1">
-            <input type="number" id="num2" placeholder="Número 2">
-            <select id="operacao">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">*</option>
-                <option value="/">/</option>
-                <option value="%">%</option>
-            </select>
+            <input type="number" id="acertos" placeholder="Acertos">
+            <input type="number" id="tentativas" placeholder="Tentativas">
             <button id="calcular">Calcular</button>
             <p id="resultado"></p>
         </section>
-        <section id="historico">
-            <h2>Histórico</h2>
-            <ul id="historico-lista"></ul>
-        </section>
     </main>
     <script>
-        // Calculadora
-        const num1Input = document.getElementById('num1');
-        const num2Input = document.getElementById('num2');
-        const operacaoSelect = document.getElementById('operacao');
+        const acertosInput = document.getElementById('acertos');
+        const tentativasInput = document.getElementById('tentativas');
         const calcularButton = document.getElementById('calcular');
         const resultadoP = document.getElementById('resultado');
-        const historicoLista = document.getElementById('historico-lista');
 
         calcularButton.addEventListener('click', () => {
-            const num1 = parseFloat(num1Input.value);
-            const num2 = parseFloat(num2Input.value);
-            const operacao = operacaoSelect.value;
+            const acertos = parseInt(acertosInput.value);
+            const tentativas = parseInt(tentativasInput.value);
 
-            let resultado;
-            switch (operacao) {
-                case '+':
-                    resultado = num1 + num2;
-                    break;
-                case '-':
-                    resultado = num1 - num2;
-                    break;
-                case '*':
-                    resultado = num1 * num2;
-                    break;
-                case '/':
-                    if (num2 !== 0) {
-                        resultado = num1 / num2;
-                    } else {
-                        resultado = 'Erro: Divisão por zero!';
-                    }
-                    break;
-                case '%':
-                    if (num2 !== 0) {
-                        resultado = (num1 / num2) * 100;
-                    } else {
-                        resultado = 'Erro: Divisão por zero!';
-                    }
-                    break;
-                default:
-                    resultado = 'Erro!';
+            if (tentativas === 0) {
+                resultadoP.textContent = 'Erro: Não é possível calcular a porcentagem com 0 tentativas!';
+                return;
             }
 
-            resultadoP.textContent = `Resultado: ${resultado}`;
+            const porcentagemAcertos = (acertos / tentativas) * 100;
+            const porcentagemErros = 100 - porcentagemAcertos;
 
-            // Adicione o resultado ao histórico
-            const historicoListItem = document.createElement('li');
-            historicoListItem.textContent = `${num1} ${operacao} ${num2} = ${resultado}`;
-            historicoLista.appendChild(historicoListItem);
+            resultadoP.textContent = `Porcentagem de Acertos: ${porcentagemAcertos.toFixed(2)}%`;
+            resultadoP.textContent += `\nPorcentagem de Erros: ${porcentagemErros.toFixed(2)}%`;
         });
     </script>
 </body>
