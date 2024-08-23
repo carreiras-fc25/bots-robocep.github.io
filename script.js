@@ -1,24 +1,51 @@
-// Calculadora de Porcentagem
-const calculadoraForm = document.getElementById('calculadora-form');
-const tentativasInput = document.getElementById('tentativas');
-const acertosInput = document.getElementById('acertos');
+// Calculadora
+const num1Input = document.getElementById('num1');
+const num2Input = document.getElementById('num2');
+const operacaoSelect = document.getElementById('operacao');
+const calcularButton = document.getElementById('calcular');
 const resultadoP = document.getElementById('resultado');
 
-calculadoraForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const tentativas = parseInt(tentativasInput.value);
-  const acertos = parseInt(acertosInput.value);
-  const porcentagem = (acertos / tentativas) * 100;
-  resultadoP.textContent = `Porcentagem: ${porcentagem.toFixed(2)}%`;
+calcularButton.addEventListener('click', () => {
+    const num1 = parseFloat(num1Input.value);
+    const num2 = parseFloat(num2Input.value);
+    const operacao = operacaoSelect.value;
+
+    let resultado;
+    switch (operacao) {
+        case '+':
+            resultado = num1 + num2;
+            break;
+        case '-':
+            resultado = num1 - num2;
+            break;
+        case '*':
+            resultado = num1 * num2;
+            break;
+        case '/':
+            resultado = num1 / num2;
+            break;
+        default:
+            resultado = 'Erro!';
+    }
+
+    resultadoP.textContent = `Resultado: ${resultado}`;
 });
 
-// Chat GPT
-const chatInput = document.getElementById('chat-input');
-const chatSendButton = document.getElementById('chat-send');
-const chatLog = document.getElementById('chat-log');
+// Histórico
+const historicoLista = document.getElementById('historico-lista');
 
-chatSendButton.addEventListener('click', () => {
-  const userInput = chatInput.value.trim();
-  if (userInput !== '') {
-    // Aqui você pode implementar a lógica para enviar a mensagem para o GPT e receber a resposta
-    // Por exemplo, você pode usar a API do GPT-3
+// Armazenamento de Arquivos
+const arquivoInput = document.getElementById('arquivo');
+const uploadButton = document.getElementById('upload');
+const arquivosLista = document.getElementById('arquivos-lista');
+
+uploadButton.addEventListener('click', () => {
+    const arquivo = arquivoInput.files[0];
+    const formData = new FormData();
+    formData.append('arquivo', arquivo);
+
+    fetch('/upload', {
+        method: 'POST',
+        body: formData
+    })
+    .then
