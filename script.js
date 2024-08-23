@@ -22,7 +22,11 @@ calcularButton.addEventListener('click', () => {
             resultado = num1 * num2;
             break;
         case '/':
-            resultado = num1 / num2;
+            if (num2 !== 0) {
+                resultado = num1 / num2;
+            } else {
+                resultado = 'Erro: Divisão por zero!';
+            }
             break;
         default:
             resultado = 'Erro!';
@@ -48,4 +52,13 @@ uploadButton.addEventListener('click', () => {
         method: 'POST',
         body: formData
     })
-    .then
+    .then((response) => response.json())
+    .then((data) => {
+        console.log(data);
+        // Adicione o arquivo à lista de arquivos
+        const arquivoListItem = document.createElement('li');
+        arquivoListItem.textContent = arquivo.name;
+        arquivosLista.appendChild(arquivoListItem);
+    })
+    .catch((error) => console.error(error));
+});
