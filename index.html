@@ -136,13 +136,14 @@
                     <td><img src="https://via.placeholder.com/30" alt="Time C Logo"> Time C</td>
                     <td>10</td>
                     <td class="points"></td>
-                    <td>20</td>
+                                        <td>6</td>
+                    <td class="points"></td>
                     <td>3</td>
                     <td>1</td>
                 </tr>
                 <tr>
                     <td>4</td>
-                                        <td><img src="https://via.placeholder.com/30" alt="Time D Logo"> Time D</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time D Logo"> Time D</td>
                     <td>10</td>
                     <td class="points"></td>
                     <td>5</td>
@@ -242,7 +243,7 @@
                 <tr>
                     <td>15</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time O Logo"> Time O</td>
-                    <td>10</td>
+                                        <td>10</td>
                     <td class="points"></td>
                     <td>1</td>
                     <td>2</td>
@@ -250,7 +251,7 @@
                 </tr>
                 <tr>
                     <td>16</td>
-                                        <td><img src="https://via.placeholder.com/30" alt="Time P Logo"> Time P</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time P Logo"> Time P</td>
                     <td>10</td>
                     <td class="points"></td>
                     <td>0</td>
@@ -274,6 +275,56 @@
                     <td>0</td>
                     <td>2</td>
                     <td>8</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Histórico de Transferências</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Jogador</th>
+                    <th>Time de Origem</th>
+                    <th>Time de Destino</th>
+                    <th>Valor da Transferência</th>
+                    <th>Data da Transferência</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jogador 1</td>
+                    <td>Time A</td>
+                    <td>Wolfsburg</td>
+                    <td>€10M</td>
+                    <td>2023-01-15</td>
+                </tr>
+                <tr>
+                    <td>Jogador 2</td>
+                    <td>Time B</td>
+                    <td>Wolfsburg</td>
+                    <td>€15M</td>
+                    <td>2023-02-20</td>
+                </tr>
+                <tr>
+                    <td>Jogador 3</td>
+                    <td>Time C</td>
+                    <td>Wolfsburg</td>
+                    <td>€8M</td>
+                    <td>2023-03-10</td>
+                </tr>
+                <tr>
+                    <td>Jogador 4</td>
+                    <td>Wolfsburg</td>
+                    <td>Time D</td>
+                    <td>€5M</td>
+                    <td>2023-04-05</td>
+                </tr>
+                <tr>
+                    <td>Jogador 5</td>
+                    <td>Time E</td>
+                    <td>Wolfsburg</td>
+                    <td>€12M</td>
+                    <td>2023-05-12</td>
                 </tr>
             </tbody>
         </table>
@@ -307,7 +358,7 @@
             teams.forEach((team, index) => {
                 const newRow = team.row.cloneNode(true); // Clona a linha original
                 newRow.cells[0].textContent = index + 1; // Atualiza a posição
-                tbody.appendChild(newRow); // Adiciona a nova linha à tabela
+                                tbody.appendChild(newRow); // Adiciona a nova linha à tabela
             });
         }
 
