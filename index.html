@@ -25,28 +25,6 @@
             text-align: center;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        input {
-            margin: 10px 0;
-            padding: 10px;
-        }
-
-        button {
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #218838;
-        }
-
         ul {
             list-style-type: none;
             padding: 0;
@@ -58,37 +36,25 @@
             padding: 10px;
             border-radius: 5px;
         }
+
+        .resultInput {
+            margin-right: 10px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Calendário de Jogos de Futebol</h1>
-        <form id="gameForm">
-            <input type="text" id="team1" placeholder="Time 1" required>
-            <input type="text" id="team2" placeholder="Time 2" required>
-            <input type="date" id="date" required>
-            <button type="submit">Adicionar Jogo</button>
-        </form>
         <h2>Jogos Agendados</h2>
         <ul id="gameList"></ul>
     </div>
     <script>
-        const games = [];
-
-        document.getElementById('gameForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const team1 = document.getElementById('team1').value;
-            const team2 = document.getElementById('team2').value;
-            const date = document.getElementById('date').value;
-
-            const game = { team1, team2, date, result: '' };
-            games.push(game);
-            renderGames();
-
-            // Limpar o formulário
-            document.getElementById('gameForm').reset();
-        });
+        // Adicione os jogos aqui
+        const games = [
+            { team1: "Time A", team2: "Time B", date: "2023-10-01", result: "" },
+            { team1: "Time C", team2: "Time D", date: "2023-10-02", result: "" },
+            { team1: "Time E", team2: "Time F", date: "2023-10-03", result: "" }
+        ];
 
         function renderGames() {
             const gameList = document.getElementById('gameList');
@@ -119,6 +85,9 @@
                 });
             });
         }
+
+        // Renderiza os jogos ao carregar a página
+        renderGames();
     </script>
 </body>
 </html>
