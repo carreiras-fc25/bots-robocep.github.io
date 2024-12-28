@@ -67,46 +67,58 @@
             <input type="text" id="team1" placeholder="Time 1" required>
             <input type="text" id="team2" placeholder="Time 2" required>
             <input type="date" id="date" required>
-            <input type="time" id="time" required>
             <button type="submit">Adicionar Jogo</button>
         </form>
         <h2>Jogos Agendados</h2>
         <ul id="gameList"></ul>
     </div>
     <script>
+        const games = [];
+
         document.getElementById('gameForm').addEventListener('submit', function(event) {
             event.preventDefault();
 
             const team1 = document.getElementById('team1').value;
             const team2 = document.getElementById('team2').value;
             const date = document.getElementById('date').value;
-            const time = document.getElementById('time').value;
 
-            const gameList = document.getElementById('gameList');
-            const listItem = document.createElement('li');
-
-            listItem.innerHTML = `
-                ${team1} vs ${team2} - ${date} ${time} 
-                <input type="text" placeholder="Resultado" class="resultInput">
-                <button class="updateResult">Atualizar Resultado</button>
-            `;
-
-            gameList.appendChild(listItem);
+            const game = { team1, team2, date, result: '' };
+            games.push(game);
+            renderGames();
 
             // Limpar o formulário
             document.getElementById('gameForm').reset();
-
-            // Adicionar evento para atualizar resultado
-            listItem.querySelector('.updateResult').addEventListener('click', function() {
-                const resultInput = listItem.querySelector('.resultInput');
-                const result = resultInput.value;
-                if (result) {
-                    listItem.innerHTML = `${team1} vs ${team2} - ${date} ${time} | Resultado: ${result}`;
-                } else {
-                    alert('Por favor, insira um resultado.');
-                }
-            });
         });
+
+        function renderGames() {
+            const gameList = document.getElementById('gameList');
+            gameList.innerHTML = '';
+
+            games.forEach((game, index) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    ${game.team1} vs ${game.team2} - ${game.date} 
+                    <input type="text" placeholder="Resultado" class="resultInput" value="${game.result}">
+                    <button class="updateResult" data-index="${index}">Atualizar Resultado</button>
+                `;
+                gameList.appendChild(listItem);
+            });
+
+            // Adicionar eventos para atualizar resultado
+            document.querySelectorAll('.updateResult').forEach(button => {
+                button.addEventListener('click', function() {
+                    const index = this.getAttribute('data-index');
+                    const resultInput = this.previousElementSibling;
+                    const result = resultInput.value;
+                    if (result) {
+                        games[index].result = result;
+                        renderGames();
+                    } else {
+                        alert('Por favor, insira um resultado.');
+                    }
+                });
+            });
+        }
     </script>
 </body>
 </html>
