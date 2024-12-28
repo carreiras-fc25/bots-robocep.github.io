@@ -62,8 +62,8 @@
         }
 
         .team img {
-            width: 30px; /* Tamanho da logo */
-            height: 30px; /* Tamanho da logo */
+            width: 50px; /* Tamanho da logo ajustado */
+            height: 50px; /* Tamanho da logo ajustado */
             margin-right: 10px;
         }
 
@@ -136,11 +136,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>
+               <h1>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/1200px-Logo-VfL-Wolfsburg.svg.png" alt="Logo do Futebol"> WOLFSBURG
         </h1>
         
-    
         <h2>Jogos Agendados</h2>
         <ul id="gameList"></ul>
 
@@ -152,7 +151,7 @@
                     <th>Time</th>
                     <th>Jogos</th>
                     <th>Pontos</th>
-                                        <th>Vitórias</th>
+                    <th>Vitórias</th>
                     <th>Empates</th>
                     <th>Derrotas</th>
                 </tr>
@@ -230,7 +229,7 @@
                     <td>4</td>
                     <td>3</td>
                 </tr>
-                <tr>
+                               <tr>
                     <td>9</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time I Logo"> Time I</td>
                     <td>10</td>
@@ -260,7 +259,7 @@
                 <tr>
                     <td>12</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time L Logo"> Time L</td>
-                                        <td>10</td>
+                    <td>10</td>
                     <td class="points"></td>
                     <td>1</td>
                     <td>5</td>
@@ -340,7 +339,7 @@
                     <td>Time A</td>
                     <td>Wolfsburg</td>
                     <td>€10M</td>
-                    <td>2023-01-15</td>
+                                       <td>2023-01-15</td>
                 </tr>
                 <tr>
                     <td>Jogador 2</td>
@@ -374,7 +373,7 @@
         </table>
 
         <h2>Atual Verba de Transferências do Clube</h2>
-               <div class="transfer-info">
+        <div class="transfer-info">
             <p>8.000.000 milhões de euros</p>
         </div>
     </div>
@@ -432,7 +431,7 @@
                     <span class="team">
                         <img src="${game.team2.logo}" alt="${game.team2.name} Logo"> ${game.team2.name} 
                     </span>
-                    <span class="date">${game.date}</span>
+                                        <span class="date">${game.date}</span>
                 `;
                 gameList.appendChild(listItem);
             });
