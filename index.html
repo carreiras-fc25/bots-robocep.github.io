@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>  WOLFSBURG </title>
+    <title>WOLFSBURG</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -94,7 +94,8 @@
 <body>
     <div class="container">
         <h1>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/1200px-Logo-VfL-Wolfsburg.svg.png" alt="Logo do Futebol" > WOLFSBURG </h1>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/1200px-Logo-VfL-Wolfsburg.svg.png" alt="Logo do Futebol"> WOLFSBURG
+        </h1>
         <h2>Jogos Agendados</h2>
         <ul id="gameList"></ul>
 
@@ -116,159 +117,167 @@
                     <td>1</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time A Logo"> Time A</td>
                     <td>10</td>
-                    <td>13</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>25</td> <!-- 8*3 + 1*1 = 25 -->
+                    <td><input type="number" value="8" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                    <td class="points">25</td> <!-- Inicialmente 25, será atualizado -->
                 </tr>
                 <tr>
                     <td>2</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time B Logo"> Time B</td>
                     <td>10</td>
-                    <td>7</td>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>23</td> <!-- 7*3 + 2*1 = 23 -->
+                    <td><input type="number" value="7" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="2" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                                        <td class="points">23</td> <!-- Inicialmente 23, será atualizado -->
                 </tr>
-                              <tr>
+                <tr>
                     <td>3</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time C Logo"> Time C</td>
                     <td>10</td>
-                    <td>6</td>
-                    <td>3</td>
-                    <td>1</td>
-                    <td>21</td> <!-- 6*3 + 3*1 = 21 -->
+                    <td><input type="number" value="6" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                    <td class="points">21</td> <!-- Inicialmente 21, será atualizado -->
                 </tr>
                 <tr>
                     <td>4</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time D Logo"> Time D</td>
                     <td>10</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>1</td>
-                    <td>19</td> <!-- 5*3 + 4*1 = 19 -->
+                    <td><input type="number" value="5" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="4" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                    <td class="points">19</td> <!-- Inicialmente 19, será atualizado -->
                 </tr>
                 <tr>
                     <td>5</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time E Logo"> Time E</td>
                     <td>10</td>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>2</td>
-                    <td>18</td> <!-- 5*3 + 3*1 = 18 -->
+                    <td><input type="number" value="5" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="2" onchange="calculatePoints(this)" /></td>
+                    <td class="points">18</td> <!-- Inicialmente 18, será atualizado -->
                 </tr>
                 <tr>
                     <td>6</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time F Logo"> Time F</td>
                     <td>10</td>
-                    <td>4</td>
-                    <td>4</td>
-                    <td>2</td>
-                    <td>16</td> <!-- 4*3 + 4*1 = 16 -->
+                    <td><input type="number" value="4" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="4" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="2" onchange="calculatePoints(this)" /></td>
+                    <td class="points">16</td> <!-- Inicialmente 16, será atualizado -->
                 </tr>
                 <tr>
                     <td>7</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time G Logo"> Time G</td>
                     <td>10</td>
-                    <td>3</td>
-                    <td>5</td>
-                    <td>2</td>
-                    <td>14</td> <!-- 3*3 + 5*1 = 14 -->
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="5" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="2" onchange="calculatePoints(this)" /></td>
+                    <td class="points">14</td> <!-- Inicialmente 14, será atualizado -->
                 </tr>
                 <tr>
                     <td>8</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time H Logo"> Time H</td>
                     <td>10</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>3</td>
-                    <td>13</td> <!-- 3*3 + 4*1 = 13 -->
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="4" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td class="points">13</td> <!-- Inicialmente 13, será atualizado -->
                 </tr>
                 <tr>
                     <td>9</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time I Logo"> Time I</td>
                     <td>10</td>
-                    <td>2</td>
-                    <td>5</td>
-                    <td>3</td>
-                    <td>11</td> <!-- 2*3 + 5*1 = 11 -->
+                    <td><input type="number" value="2" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="5" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td class="points">11</td> <!-- Inicialmente 11, será atualizado -->
                 </tr>
-                <tr>
+                                <tr>
                     <td>10</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time J Logo"> Time J</td>
                     <td>10</td>
-                    <td>2</td>
-                    <td>4</td>
-                    <td>4</td>
-                    <td>10</td> <!-- 2*3 + 4*1 = 10 -->
+                    <td><input type="number" value="2" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="4" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="4" onchange="calculatePoints(this)" /></td>
+                    <td class="points">10</td> <!-- Inicialmente 10, será atualizado -->
                 </tr>
                 <tr>
                     <td>11</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time K Logo"> Time K</td>
                     <td>10</td>
-                    <td>1</td>
-                    <td>6</td>
-                    <td>3</td>
-                    <td>9</td> <!-- 1*3 + 6*1 = 9 -->
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="6" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td class="points">9</td> <!-- Inicialmente 9, será atualizado -->
                 </tr>
                 <tr>
                     <td>12</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time L Logo"> Time L</td>
                     <td>10</td>
-                    <td>1</td>
-                    <td>5</td>
-                    <td>4</td>
-                    <td>8</td> <!-- 1*3 + 5*1 = 8 -->
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="5" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="4" onchange="calculatePoints(this)" /></td>
+                    <td class="points">8</td> <!-- Inicialmente 8, será atualizado -->
                 </tr>
-                               <tr>
+                <tr>
                     <td>14</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time N Logo"> Time N</td>
                     <td>10</td>
-                    <td>1</td>
-                    <td>3</td>
-                    <td>6</td>
-                    <td>6</td> <!-- 1*3 + 3*1 = 6 -->
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="6" onchange="calculatePoints(this)" /></td>
+                    <td class="points">6</td> <!-- Inicialmente 6, será atualizado -->
                 </tr>
                 <tr>
                     <td>15</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time O Logo"> Time O</td>
                     <td>10</td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>7</td>
-                    <td>5</td> <!-- 1*3 + 2*1 = 5 -->
+                    <td><input type="number" value="1" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="2" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="7" onchange="calculatePoints(this)" /></td>
+                    <td class="points">5</td> <!-- Inicialmente 5, será atualizado -->
                 </tr>
                 <tr>
                     <td>16</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time P Logo"> Time P</td>
                     <td>10</td>
-                    <td>0</td>
-                    <td>4</td>
-                    <td>6</td>
-                    <td>4</td> <!-- 0*3 + 4*1 = 4 -->
+                    <td><input type="number" value="0" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="4" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="6" onchange="calculatePoints(this)" /></td>
+                    <td class="points">4</td> <!-- Inicialmente 4, será atualizado -->
                 </tr>
                 <tr>
                     <td>17</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time Q Logo"> Time Q</td>
                     <td>10</td>
-                    <td>0</td>
-                    <td>3</td>
-                    <td>7</td>
-                    <td>3</td> <!-- 0*3 + 3*1 = 3 -->
+                    <td><input type="number" value="0" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="3" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="7" onchange="calculatePoints(this)" /></td>
+                    <td class="points">3</td> <!-- Inicialmente 3, será atualizado -->
                 </tr>
                 <tr>
-                    <td>18</td>
+                                       <td>18</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time R Logo"> Time R</td>
                     <td>10</td>
-                    <td>0</td>
-                    <td>2</td>
-                    <td>8</td>
-                    <td>2</td> <!-- 0*3 + 2*1 = 2 -->
+                    <td><input type="number" value="0" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="2" onchange="calculatePoints(this)" /></td>
+                    <td><input type="number" value="8" onchange="calculatePoints(this)" /></td>
+                    <td class="points">2</td> <!-- Inicialmente 2, será atualizado -->
                 </tr>
             </tbody>
         </table>
     </div>
     <script>
+        function calculatePoints(input) {
+            const row = input.closest('tr');
+            const wins = row.querySelector('td:nth-child(4) input').value;
+            const draws = row.querySelector('td:nth-child(5) input').value;
+            const points = (wins * 3) + (draws * 1);
+            row.querySelector('.points').textContent = points;
+        }
+
         // Adicione os jogos aqui
         const games = [
             { team1: { name: "Time A", logo: "https://via.placeholder.com/30" }, team2: { name: "Time B", logo: "https://via.placeholder.com/30" }, date: "2023-10-01" },
