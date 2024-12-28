@@ -118,7 +118,7 @@
                     <td><img src="https://via.placeholder.com/30" alt="Time A Logo"> Time A</td>
                     <td>10</td>
                     <td class="points"></td>
-                    <td>10</td>
+                    <td>8</td>
                     <td>1</td>
                     <td>1</td>
                 </tr>
@@ -140,9 +140,9 @@
                     <td>3</td>
                     <td>1</td>
                 </tr>
-                                <tr>
+                <tr>
                     <td>4</td>
-                    <td><img src="https://via.placeholder.com/30" alt="Time D Logo"> Time D</td>
+                                        <td><img src="https://via.placeholder.com/30" alt="Time D Logo"> Time D</td>
                     <td>10</td>
                     <td class="points"></td>
                     <td>5</td>
@@ -217,7 +217,7 @@
                     <td><img src="https://via.placeholder.com/30" alt="Time L Logo"> Time L</td>
                     <td>10</td>
                     <td class="points"></td>
-                    <td>20</td>
+                    <td>1</td>
                     <td>5</td>
                     <td>4</td>
                 </tr>
@@ -239,7 +239,7 @@
                     <td>2</td>
                     <td>7</td>
                 </tr>
-                                <tr>
+                <tr>
                     <td>15</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time O Logo"> Time O</td>
                     <td>10</td>
@@ -250,7 +250,7 @@
                 </tr>
                 <tr>
                     <td>16</td>
-                    <td><img src="https://via.placeholder.com/30" alt="Time P Logo"> Time P</td>
+                                        <td><img src="https://via.placeholder.com/30" alt="Time P Logo"> Time P</td>
                     <td>10</td>
                     <td class="points"></td>
                     <td>0</td>
@@ -282,11 +282,32 @@
         // Função para calcular os pontos
         function calculatePoints() {
             const rows = document.querySelectorAll('#bundesligaTable tr');
+            const teams = [];
+
             rows.forEach(row => {
                 const wins = parseInt(row.cells[4].textContent); // Vitórias
                 const draws = parseInt(row.cells[5].textContent); // Empates
                 const points = (wins * 3) + (draws * 1); // Cálculo dos pontos
                 row.querySelector('.points').textContent = points; // Atualiza a coluna de pontos
+
+                // Adiciona os dados da equipe ao array
+                teams.push({
+                    row: row,
+                    points: points
+                });
+            });
+
+            // Ordena as equipes com base nos pontos
+            teams.sort((a, b) => b.points - a.points);
+
+            // Atualiza a tabela com a nova ordem
+            const tbody = document.getElementById('bundesligaTable');
+            tbody.innerHTML = ''; // Limpa o conteúdo atual
+
+            teams.forEach((team, index) => {
+                const newRow = team.row.cloneNode(true); // Clona a linha original
+                newRow.cells[0].textContent = index + 1; // Atualiza a posição
+                tbody.appendChild(newRow); // Adiciona a nova linha à tabela
             });
         }
 
@@ -319,7 +340,7 @@
 
         // Renderiza os jogos ao carregar a página
         renderGames();
-        // Calcula os pontos ao carregar a página
+        // Calcula os pontos e ordena a tabela ao carregar a página
         calculatePoints();
     </script>
 </body>
