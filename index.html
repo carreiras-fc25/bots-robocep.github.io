@@ -10,6 +10,7 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .container {
@@ -19,6 +20,7 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         h1 img {
@@ -96,6 +98,40 @@
             background: #e9ecef;
             border-radius: 5px;
         }
+
+        /* Estilos para o modo escuro */
+        body.dark-mode {
+            background-color: #333;
+            color: #f4f4f4;
+        }
+
+        .container.dark-mode {
+            background: #444;
+        }
+
+        th.dark-mode {
+            background-color: #555;
+        }
+
+        li.dark-mode {
+            background: #666;
+        }
+
+        .btn-toggle {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007A33;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-toggle:hover {
+            background-color: #005f26;
+        }
     </style>
 </head>
 <body>
@@ -103,6 +139,9 @@
         <h1>
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Logo-VfL-Wolfsburg.svg/1200px-Logo-VfL-Wolfsburg.svg.png" alt="Logo do Futebol"> WOLFSBURG
         </h1>
+        
+        <button class="btn-toggle" onclick="toggleDarkMode()">Alternar Modo Escuro/Claro</button>
+
         <h2>Jogos Agendados</h2>
         <ul id="gameList"></ul>
 
@@ -114,7 +153,7 @@
                     <th>Time</th>
                     <th>Jogos</th>
                     <th>Pontos</th>
-                    <th>Vitórias</th>
+                                        <th>Vitórias</th>
                     <th>Empates</th>
                     <th>Derrotas</th>
                 </tr>
@@ -139,7 +178,7 @@
                     <td>1</td>
                 </tr>
                 <tr>
-                                       <td>3</td>
+                    <td>3</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time C Logo"> Time C</td>
                     <td>10</td>
                     <td class="points"></td>
@@ -222,7 +261,7 @@
                 <tr>
                     <td>12</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time L Logo"> Time L</td>
-                    <td>10</td>
+                                        <td>10</td>
                     <td class="points"></td>
                     <td>1</td>
                     <td>5</td>
@@ -244,7 +283,7 @@
                     <td class="points"></td>
                     <td>1</td>
                     <td>2</td>
-                                        <td>7</td>
+                    <td>7</td>
                 </tr>
                 <tr>
                     <td>15</td>
@@ -336,8 +375,8 @@
         </table>
 
         <h2>Atual Verba de Transferências do Clube</h2>
-        <div class="transfer-info">
-            <p> 8.000.000 milhoes de euros </p>
+               <div class="transfer-info">
+            <p>8.000.000 milhões de euros</p>
         </div>
     </div>
     <script>
@@ -349,7 +388,7 @@
             rows.forEach(row => {
                 const wins = parseInt(row.cells[4].textContent); // Vitórias
                 const draws = parseInt(row.cells[5].textContent); // Empates
-                               const points = (wins * 3) + (draws * 1); // Cálculo dos pontos
+                const points = (wins * 3) + (draws * 1); // Cálculo dos pontos
                 row.querySelector('.points').textContent = points; // Atualiza a coluna de pontos
 
                 // Adiciona os dados da equipe ao array
@@ -398,6 +437,16 @@
                 `;
                 gameList.appendChild(listItem);
             });
+        }
+
+        // Função para alternar entre modo claro e escuro
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            document.querySelector('.container').classList.toggle('dark-mode');
+            const tableHeaders = document.querySelectorAll('th');
+            tableHeaders.forEach(th => th.classList.toggle('dark-mode'));
+            const listItems = document.querySelectorAll('li');
+            listItems.forEach(li => li.classList.toggle('dark-mode'));
         }
 
         // Renderiza os jogos ao carregar a página
