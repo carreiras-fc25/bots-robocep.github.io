@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendário de Jogos de Futebol</title>
+    <title>Calendário de Jogos de Futebol e Tabela da Bundesliga</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -62,6 +62,27 @@
         .date {
             color: #555;
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007A33; /* Cor do Wolfsburg */
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
@@ -69,11 +90,216 @@
         <h1>Calendário de Jogos de Futebol</h1>
         <h2>Jogos Agendados</h2>
         <ul id="gameList"></ul>
+
+        <h2>Tabela da Bundesliga</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Time</th>
+                    <th>Jogos</th>
+                    <th>Vitórias</th>
+                    <th>Empates</th>
+                    <th>Derrotas</th>
+                    <th>Gols a Favor</th>
+                    <th>Gols Contra</th>
+                    <th>Saldo de Gols</th>
+                </tr>
+            </thead>
+            <tbody id="bundesligaTable">
+                <tr>
+                    <td>1</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time A Logo"> Time A</td>
+                    <td>10</td>
+                    <td>8</td>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>25</td>
+                    <td>10</td>
+                    <td>+15</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time B Logo"> Time B</td>
+                    <td>10</td>
+                    <td>7</td>
+                    <td>2</td>
+                    <td>1</td>
+                    <td>22</td>
+                    <td>8</td>
+                    <td>+14</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time C Logo"> Time C</td>
+                    <td>10</td>
+                    <td>6</td>
+                    <td>3</td>
+                    <td>1</td>
+                    <td>20</td>
+                                       <td>+8</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time D Logo"> Time D</td>
+                    <td>10</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>1</td>
+                    <td>18</td>
+                    <td>15</td>
+                    <td>+3</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time E Logo"> Time E</td>
+                    <td>10</td>
+                    <td>5</td>
+                    <td>3</td>
+                    <td>2</td>
+                    <td>17</td>
+                    <td>14</td>
+                    <td>+3</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time F Logo"> Time F</td>
+                    <td>10</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>2</td>
+                    <td>15</td>
+                    <td>12</td>
+                    <td>+3</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time G Logo"> Time G</td>
+                    <td>10</td>
+                    <td>3</td>
+                    <td>5</td>
+                    <td>2</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time H Logo"> Time H</td>
+                    <td>10</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>3</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>-1</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time I Logo"> Time I</td>
+                    <td>10</td>
+                    <td>2</td>
+                    <td>5</td>
+                    <td>3</td>
+                    <td>9</td>
+                    <td>12</td>
+                    <td>-3</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time J Logo"> Time J</td>
+                    <td>10</td>
+                    <td>2</td>
+                    <td>4</td>
+                    <td>4</td>
+                    <td>8</td>
+                    <td>15</td>
+                    <td>-7</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time K Logo"> Time K</td>
+                    <td>10</td>
+                    <td>1</td>
+                    <td>6</td>
+                    <td>3</td>
+                    <td>7</td>
+                    <td>12</td>
+                    <td>-5</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time L Logo"> Time L</td>
+                    <td>10</td>
+                    <td>1</td>
+                    <td>5</td>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>15</td>
+                    <td>-9</td>
+                               </tr>
+                <tr>
+                    <td>14</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time N Logo"> Time N</td>
+                    <td>10</td>
+                    <td>1</td>
+                    <td>3</td>
+                    <td>6</td>
+                    <td>4</td>
+                    <td>20</td>
+                    <td>-16</td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time O Logo"> Time O</td>
+                    <td>10</td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>7</td>
+                    <td>3</td>
+                    <td>22</td>
+                    <td>-19</td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time P Logo"> Time P</td>
+                    <td>10</td>
+                    <td>0</td>
+                    <td>4</td>
+                    <td>6</td>
+                    <td>2</td>
+                    <td>18</td>
+                    <td>-16</td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time Q Logo"> Time Q</td>
+                    <td>10</td>
+                    <td>0</td>
+                    <td>3</td>
+                    <td>7</td>
+                    <td>1</td>
+                    <td>25</td>
+                    <td>-24</td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td><img src="https://via.placeholder.com/30" alt="Time R Logo"> Time R</td>
+                    <td>10</td>
+                    <td>0</td>
+                    <td>2</td>
+                    <td>8</td>
+                    <td>0</td>
+                    <td>30</td>
+                    <td>-30</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <script>
         // Adicione os jogos aqui
         const games = [
-            { team1: { name: "Time A", logo: "https://ssl.gstatic.com/onebox/media/sports/logos/nCdwmPlnAA041M4HDMzmkg_64x64.png" }, team2: { name: "Time B", logo: "https://via.placeholder.com/30" }, date: "2023-10-01" },
+            { team1: { name: "Time A", logo: "https://via.placeholder.com/30" }, team2: { name: "Time B", logo: "https://via.placeholder.com/30" }, date: "2023-10-01" },
             { team1: { name: "Time C", logo: "https://via.placeholder.com/30" }, team2: { name: "Time D", logo: "https://via.placeholder.com/30" }, date: "2023-10-02" },
             { team1: { name: "Time E", logo: "https://via.placeholder.com/30" }, team2: { name: "Time F", logo: "https://via.placeholder.com/30" }, date: "2023-10-03" },
             { team1: { name: "Time G", logo: "https://via.placeholder.com/30" }, team2: { name: "Time H", logo: "https://via.placeholder.com/30" }, date: "2023-10-04" }
