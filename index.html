@@ -89,6 +89,13 @@
         tr:nth-child(even) {
             background-color: #f2f2f2;
         }
+
+        .transfer-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
@@ -132,12 +139,11 @@
                     <td>1</td>
                 </tr>
                 <tr>
-                    <td>3</td>
+                                       <td>3</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time C Logo"> Time C</td>
                     <td>10</td>
                     <td class="points"></td>
-                                        <td>6</td>
-                    <td class="points"></td>
+                    <td>6</td>
                     <td>3</td>
                     <td>1</td>
                 </tr>
@@ -238,12 +244,12 @@
                     <td class="points"></td>
                     <td>1</td>
                     <td>2</td>
-                    <td>7</td>
+                                        <td>7</td>
                 </tr>
                 <tr>
                     <td>15</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time O Logo"> Time O</td>
-                                        <td>10</td>
+                    <td>10</td>
                     <td class="points"></td>
                     <td>1</td>
                     <td>2</td>
@@ -328,6 +334,16 @@
                 </tr>
             </tbody>
         </table>
+
+        <h2>Atual Versão de Transferências do Clube</h2>
+        <div class="transfer-info">
+            <p>Aqui você pode adicionar informações sobre as transferências mais recentes do clube.</p>
+            <ul>
+                <li>Jogador X transferido de Time Y para Wolfsburg por €ZM em DD/MM/AAAA.</li>
+                <li>Jogador A transferido de Time B para Wolfsburg por €XM em DD/MM/AAAA.</li>
+                <!-- Adicione mais transferências conforme necessário -->
+            </ul>
+        </div>
     </div>
     <script>
         // Função para calcular os pontos
@@ -338,7 +354,7 @@
             rows.forEach(row => {
                 const wins = parseInt(row.cells[4].textContent); // Vitórias
                 const draws = parseInt(row.cells[5].textContent); // Empates
-                const points = (wins * 3) + (draws * 1); // Cálculo dos pontos
+                               const points = (wins * 3) + (draws * 1); // Cálculo dos pontos
                 row.querySelector('.points').textContent = points; // Atualiza a coluna de pontos
 
                 // Adiciona os dados da equipe ao array
@@ -358,7 +374,7 @@
             teams.forEach((team, index) => {
                 const newRow = team.row.cloneNode(true); // Clona a linha original
                 newRow.cells[0].textContent = index + 1; // Atualiza a posição
-                                tbody.appendChild(newRow); // Adiciona a nova linha à tabela
+                tbody.appendChild(newRow); // Adiciona a nova linha à tabela
             });
         }
 
