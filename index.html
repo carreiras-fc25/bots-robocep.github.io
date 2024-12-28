@@ -3,193 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Equipe de Robótica</title>
+    <title>Calendário de Jogos de Futebol</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f0f0f0;
-        }
-
-        main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        section {
-            margin: 20px;
+            background-color: #f4f4f4;
+            margin: 0;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            width: 30%;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            margin-top: 0;
-            color: #333;
+        h1, h2 {
+            text-align: center;
         }
 
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+        form {
+            display: flex;
+            flex-direction: column;
         }
 
-        select {
-            width: 100%;
+        input {
+            margin: 10px 0;
             padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
         }
 
         button {
-            background-color: #4CAF50;
-            color: #fff;
-            padding: 10px 20px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
             border: none;
-            border-radius: 5px;
             cursor: pointer;
         }
 
         button:hover {
-            background-color: #3e8e41;
+            background-color: #218838;
         }
 
-        #historico-lista, #arquivos-lista {
-            list-style: none;
+        ul {
+            list-style-type: none;
             padding: 0;
-            margin: 0;
         }
 
-        #historico-lista li, #arquivos-lista li {
+        li {
+            background: #e9ecef;
+            margin: 10px 0;
             padding: 10px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        #historico-lista li:last-child, #arquivos-lista li:last-child {
-            border-bottom: none;
-        }
-
-        /* Adicionado estilo para o histórico em modo ecuro */
-        #historico-lista {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        #historico-lista li {
-            color: #fff;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Equipe de Robótica</h1>
-    </header>
-    <main>
-        <section id="calculadora">
-            <h2>Calculadora</h2>
-            <input type="number" id="num1" placeholder="Número 1">
-            <input type="number" id="num2" placeholder="Número 2">
-            <select id="operacao">
-                <option value="+">+</option>
-                <option value="-">-</option>
-                <option value="*">*</option>
-                <option value="/">/</option>
-            </select>
-            <button id="calcular">Calcular</button>
-            <p id="resultado"></p>
-        </section>
-        <section id="historico">
-            <h2>Histórico</h2>
-            <ul id="historico-lista"></ul>
-            <button id="limpar-historico">Limpar Histórico</button>
-        </section>
-        <section id="armazenamento">
-            <h2>Armazenamento de Arquivos</h2>
-            <input type="file" id="arquivo">
-            <button id="upload">Upload</button>
-            <ul id="arquivos-lista"></ul>
-        </section>
-    </main>
+    <div class="container">
+        <h1>Calendário de Jogos de Futebol</h1>
+        <form id="gameForm">
+            <input type="text" id="team1" placeholder="Time 1" required>
+            <input type="text" id="team2" placeholder="Time 2" required>
+            <input type="date" id="date" required>
+            <input type="time" id="time" required>
+            <button type="submit">Adicionar Jogo</button>
+        </form>
+        <h2>Jogos Agendados</h2>
+        <ul id="gameList"></ul>
+    </div>
     <script>
-        // Calculadora
-        const num1Input = document.getElementById('num1');
-        const num2Input = document.getElementById('num2');
-        const operacaoSelect = document.getElementById('operacao');
-        const calcularButton = document.getElementById('calcular');
-        const resultadoP = document.getElementById('resultado');
-        const historicoLista = document.getElementById('historico-lista');
-        const limparHistoricoButton = document.getElementById('limpar-historico');
+        document.getElementById('gameForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        calcularButton.addEventListener('click', () => {
-            const num1 = parseFloat(num1Input.value);
-            const num2 = parseFloat(num2Input.value);
-            const operacao = operacaoSelect.value;
+            const team1 = document.getElementById('team1').value;
+            const team2 = document.getElementById('team2').value;
+            const date = document.getElementById('date').value;
+            const time = document.getElementById('time').value;
 
-            let resultado;
-            switch (operacao) {
-                case '+':
-                    resultado = num1 + num2;
-                    break;
-                         case '-':
-                    resultado = num1 - num2;
-                    break;
-                case '*':
-                    resultado = num1 * num2;
-                    break;
-                case '/':
-                    if (num2 !== 0) {
-                        resultado = num1 / num2;
-                    } else {
-                        resultado = 'Erro: Divisão por zero!';
-                    }
-                    break;
-                default:
-                    resultado = 'Erro!';
-            }
+            const gameList = document.getElementById('gameList');
+            const listItem = document.createElement('li');
 
-            resultadoP.textContent = `Resultado: ${resultado}`;
+            listItem.innerHTML = `
+                ${team1} vs ${team2} - ${date} ${time} 
+                <input type="text" placeholder="Resultado" class="resultInput">
+                <button class="updateResult">Atualizar Resultado</button>
+            `;
 
-            // Adicione o resultado ao histórico
-            const historicoListItem = document.createElement('li');
-            historicoListItem.textContent = `${num1} ${operacao} ${num2} = ${resultado}`;
-            historicoLista.appendChild(historicoListItem);
-        });
+            gameList.appendChild(listItem);
 
-        limparHistoricoButton.addEventListener('click', () => {
-            historicoLista.innerHTML = '';
-        });
+            // Limpar o formulário
+            document.getElementById('gameForm').reset();
 
-        // Armazenamento de Arquivos
-        const arquivoInput = document.getElementById('arquivo');
-        const uploadButton = document.getElementById('upload');
-        const arquivosLista = document.getElementById('arquivos-lista');
-
-        uploadButton.addEventListener('click', () => {
-            const arquivo = arquivoInput.files[0];
-            const formData = new FormData();
-            formData.append('arquivo', arquivo);
-
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-                // Adicione o arquivo à lista de arquivos
-                const arquivoListItem = document.createElement('li');
-                arquivoListItem.textContent = arquivo.name;
-                arquivosLista.appendChild(arquivoListItem);
-            })
-            .catch((error) => console.error(error));
+            // Adicionar evento para atualizar resultado
+            listItem.querySelector('.updateResult').addEventListener('click', function() {
+                const resultInput = listItem.querySelector('.resultInput');
+                const result = resultInput.value;
+                if (result) {
+                    listItem.innerHTML = `${team1} vs ${team2} - ${date} ${time} | Resultado: ${result}`;
+                } else {
+                    alert('Por favor, insira um resultado.');
+                }
+            });
         });
     </script>
 </body>
