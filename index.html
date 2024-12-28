@@ -54,32 +54,6 @@
         .date {
             color: #555;
         }
-
-        .addGame {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .addGame input {
-            margin-right: 10px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .addGame button {
-            padding: 5px 10px;
-            background-color: #007A33; /* Cor do Wolfsburg */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .addGame button:hover {
-            background-color: #005A26; /* Cor mais escura do Wolfsburg */
-        }
     </style>
 </head>
 <body>
@@ -87,18 +61,14 @@
         <h1>Calendário de Jogos de Futebol</h1>
         <h2>Jogos Agendados</h2>
         <ul id="gameList"></ul>
-        <div class="addGame">
-            <input type="text" id="team1" placeholder="Time 1" required>
-            <input type="text" id="team2" placeholder="Time 2" required>
-            <input type="date" id="gameDate" required>
-            <button id="addGameButton">Adicionar Jogo</button>
-        </div>
     </div>
     <script>
+        // Adicione os jogos aqui
         const games = [
             { team1: "Time A", team2: "Time B", date: "2023-10-01" },
             { team1: "Time C", team2: "Time D", date: "2023-10-02" },
-            { team1: "Time E", team2: "Time F", date: "2023-10-03" }
+            { team1: "Time E", team2: "Time F", date: "2023-10-03" },
+            { team1: "Time G", team2: "Time H", date: "2023-10-04" }
         ];
 
         function renderGames() {
@@ -115,22 +85,7 @@
             });
         }
 
-        document.getElementById('addGameButton').addEventListener('click', function() {
-            const team1 = document.getElementById('team1').value;
-            const team2 = document.getElementById('team2').value;
-            const gameDate = document.getElementById('gameDate').value;
-
-            if (team1 && team2 && gameDate) {
-                games.push({ team1, team2, date: gameDate });
-                renderGames();
-                document.getElementById('team1').value = '';
-                document.getElementById('team2').value = '';
-                document.getElementById('gameDate').value = '';
-            } else {
-                alert('Por favor, preencha todos os campos.');
-            }
-        });
-
+        // Renderiza os jogos ao carregar a página
         renderGames();
     </script>
 </body>
