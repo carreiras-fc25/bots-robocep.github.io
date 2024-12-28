@@ -49,6 +49,14 @@
         .team {
             font-weight: bold;
             color: #007A33; /* Cor do Wolfsburg */
+            display: flex;
+            align-items: center;
+        }
+
+        .team img {
+            width: 30px; /* Tamanho da logo */
+            height: 30px; /* Tamanho da logo */
+            margin-right: 10px;
         }
 
         .date {
@@ -65,10 +73,10 @@
     <script>
         // Adicione os jogos aqui
         const games = [
-            { team1: "Time A", team2: "Time B", date: "2023-10-01" },
-            { team1: "Time C", team2: "Time D", date: "2023-10-02" },
-            { team1: "Time E", team2: "Time F", date: "2023-10-03" },
-            { team1: "Time G", team2: "Time H", date: "2023-10-04" }
+            { team1: { name: "Time A", logo: "https://ssl.gstatic.com/onebox/media/sports/logos/nCdwmPlnAA041M4HDMzmkg_64x64.png" }, team2: { name: "Time B", logo: "https://via.placeholder.com/30" }, date: "2023-10-01" },
+            { team1: { name: "Time C", logo: "https://via.placeholder.com/30" }, team2: { name: "Time D", logo: "https://via.placeholder.com/30" }, date: "2023-10-02" },
+            { team1: { name: "Time E", logo: "https://via.placeholder.com/30" }, team2: { name: "Time F", logo: "https://via.placeholder.com/30" }, date: "2023-10-03" },
+            { team1: { name: "Time G", logo: "https://via.placeholder.com/30" }, team2: { name: "Time H", logo: "https://via.placeholder.com/30" }, date: "2023-10-04" }
         ];
 
         function renderGames() {
@@ -78,7 +86,12 @@
             games.forEach(game => {
                 const listItem = document.createElement('li');
                 listItem.innerHTML = `
-                    <span class="team">${game.team1} vs ${game.team2}</span>
+                    <span class="team">
+                        <img src="${game.team1.logo}" alt="${game.team1.name} Logo"> ${game.team1.name} 
+                    </span>
+                    <span class="team">
+                        <img src="${game.team2.logo}" alt="${game.team2.name} Logo"> ${game.team2.name} 
+                    </span>
                     <span class="date">${game.date}</span>
                 `;
                 gameList.appendChild(listItem);
