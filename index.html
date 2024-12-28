@@ -114,31 +114,8 @@
             </thead>
             <tbody id="bundesligaTable">
                 <tr>
-                    <td>1</td>
-                    <td><img src="https://via.placeholder.com/30" alt="Time A Logo"> Time A</td>
-                    <td>10</td>
-                    <td>8</td>
-                    <td>1</td>
-                    <td>1</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td><img src="https://via.placeholder.com/30" alt="Time B Logo"> Time B</td>
-                    <td>10</td>
-                    <td>7</td>
-                    <td>2</td>
-                    <td>1</td>
-                    <td>23</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td><img src="https://via.placeholder.com/30" alt="Time C Logo"> Time C</td>
-                    <td>10</td>
-                    <td>6</td>
-                    <td>2</td>
-                                        <td>6</td>
-                    <td>21</td>
+                                       <td>1</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>4</td>
@@ -147,7 +124,7 @@
                     <td>5</td>
                     <td>4</td>
                     <td>1</td>
-                    <td>19</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>5</td>
@@ -156,7 +133,7 @@
                     <td>5</td>
                     <td>3</td>
                     <td>2</td>
-                    <td>18</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>6</td>
@@ -165,7 +142,7 @@
                     <td>4</td>
                     <td>4</td>
                     <td>2</td>
-                    <td>16</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>7</td>
@@ -174,7 +151,7 @@
                     <td>3</td>
                     <td>5</td>
                     <td>2</td>
-                    <td>14</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>8</td>
@@ -183,7 +160,7 @@
                     <td>3</td>
                     <td>4</td>
                     <td>3</td>
-                    <td>13</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>9</td>
@@ -192,7 +169,7 @@
                     <td>2</td>
                     <td>5</td>
                     <td>3</td>
-                    <td>11</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>10</td>
@@ -201,7 +178,7 @@
                     <td>2</td>
                     <td>4</td>
                     <td>4</td>
-                    <td>10</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>11</td>
@@ -210,7 +187,7 @@
                     <td>1</td>
                     <td>6</td>
                     <td>3</td>
-                    <td>9</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>12</td>
@@ -219,7 +196,7 @@
                     <td>1</td>
                     <td>5</td>
                     <td>4</td>
-                    <td>8</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>13</td>
@@ -228,7 +205,7 @@
                     <td>1</td>
                     <td>3</td>
                     <td>6</td>
-                    <td>6</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>14</td>
@@ -237,16 +214,16 @@
                     <td>1</td>
                     <td>2</td>
                     <td>7</td>
-                    <td>5</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>15</td>
                     <td><img src="https://via.placeholder.com/30" alt="Time O Logo"> Time O</td>
                     <td>10</td>
                     <td>1</td>
-                    <td>2</td>
-                                       <td>7</td>
-                    <td>5</td>
+                                        <td>2</td>
+                    <td>7</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>16</td>
@@ -255,7 +232,7 @@
                     <td>0</td>
                     <td>4</td>
                     <td>6</td>
-                    <td>4</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>17</td>
@@ -264,7 +241,7 @@
                     <td>0</td>
                     <td>3</td>
                     <td>7</td>
-                    <td>3</td>
+                    <td class="points"></td>
                 </tr>
                 <tr>
                     <td>18</td>
@@ -273,12 +250,23 @@
                     <td>0</td>
                     <td>2</td>
                     <td>8</td>
-                    <td>2</td>
+                    <td class="points"></td>
                 </tr>
             </tbody>
         </table>
     </div>
     <script>
+        // Função para calcular os pontos
+        function calculatePoints() {
+            const rows = document.querySelectorAll('#bundesligaTable tr');
+            rows.forEach(row => {
+                const wins = parseInt(row.cells[3].textContent); // Vitórias
+                const draws = parseInt(row.cells[4].textContent); // Empates
+                const points = (wins * 3) + (draws * 1); // Cálculo dos pontos
+                row.querySelector('.points').textContent = points; // Atualiza a coluna de pontos
+            });
+        }
+
         // Adicione os jogos aqui
         const games = [
             { team1: { name: "Time A", logo: "https://via.placeholder.com/30" }, team2: { name: "Time B", logo: "https://via.placeholder.com/30" }, date: "2023-10-01" },
@@ -308,6 +296,8 @@
 
         // Renderiza os jogos ao carregar a página
         renderGames();
+        // Calcula os pontos ao carregar a página
+        calculatePoints();
     </script>
 </body>
 </html>
